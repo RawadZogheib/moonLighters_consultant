@@ -164,6 +164,18 @@ class _ProjectState extends State<Project> {
           context: context,
           builder: (BuildContext context) => ErrorAlertDialog(
               message: globals.error10));
+    } else if (body[0] == "errorToken") {
+      children.clear();
+      showDialog(
+          context: context,
+          builder: (BuildContext context) =>
+              ErrorAlertDialog(message: globals.errorToken, goHome: true));
+    } else if(body[0] == "errorVersion"){
+      children.clear();
+      showDialog(
+          context: context,
+          builder: (BuildContext context) =>
+              ErrorAlertDialog(message: globals.errorVersion, goHome: true));
     } else {
       showDialog(
           context: context,

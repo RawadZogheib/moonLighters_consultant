@@ -134,7 +134,14 @@ class _contratState extends State<contrat> {
             body[2][i][4], //contrat_max_payment
             body[2][i][5], //contrat_code
           ));
+          // print(body[2][i][0]);
+          // print(body[2][i][1]);
+          // print(body[2][i][2]);
+          // print(body[2][i][3]);
+          // print(body[2][i][4]);
+          // print(body[2][i][5]);
         }
+
         setState(() {
           children.add(PlusContratCard(
             onTap: () {
@@ -154,11 +161,13 @@ class _contratState extends State<contrat> {
             builder: (BuildContext context) =>
                 ErrorAlertDialog(message: globals.error4));
       } else if (body[0] == "errorToken") {
+        children.clear();
         showDialog(
             context: context,
             builder: (BuildContext context) =>
                 ErrorAlertDialog(message: globals.errorToken, goHome: true));
       } else if(body[0] == "errorVersion"){
+        children.clear();
         showDialog(
             context: context,
             builder: (BuildContext context) =>
