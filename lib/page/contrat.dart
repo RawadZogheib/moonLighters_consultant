@@ -157,12 +157,12 @@ class _contratState extends State<contrat> {
         showDialog(
             context: context,
             builder: (BuildContext context) =>
-                ErrorAlertDialog(message: globals.errorToken));
+                ErrorAlertDialog(message: globals.errorToken, goHome: true));
       } else if(body[0] == "errorVersion"){
         showDialog(
             context: context,
             builder: (BuildContext context) =>
-                ErrorAlertDialog(message: globals.errorVersion));
+                ErrorAlertDialog(message: globals.errorVersion, goHome: true));
       } else if (body[0] == "error10") {
         setState(() {
           children.add(PlusContratCard(

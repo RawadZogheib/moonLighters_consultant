@@ -164,11 +164,11 @@ class _ProjectState extends State<Project> {
           context: context,
           builder: (BuildContext context) => ErrorAlertDialog(
               message: globals.error10));
-    }else {
+    } else {
       showDialog(
           context: context,
           builder: (BuildContext context) => ErrorAlertDialog(
-              message: globals.errorElse + "\n ErrorNumber: " + body[0].toString()));
+              message: globals.errorElse));
     }
   }
 

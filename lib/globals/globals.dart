@@ -12,8 +12,6 @@ const String version = "v1.0";
 const String myIP = "http://147.78.45.13/";
 
 
-
-
 //Colors
 final Color blue = Colors.blue.shade50;
 final Color blue_1 = Colors.blue.shade900;
