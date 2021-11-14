@@ -8,8 +8,6 @@ import 'package:flutter/material.dart';
 import 'package:mn_consultant/widgets/button/myButton.dart';
 import 'package:mn_consultant/widgets/textInput/myErrorText.dart';
 
-import 'myCode.dart';
-
 String errCode = '';
 Color colErrCode = globals.transparent;
 
