@@ -255,7 +255,7 @@ class _loginState extends State<login> {
 
 
 
-        // print("globalsid = ${globals.id} globFName = ${globals.fName} \n globLName = ${globals.lName} globUsernm = ${globals.userName} \n"
+        // print("globalsId = ${globals.Id} globFName = ${globals.fName} \n globLName = ${globals.lName} globUsernm = ${globals.userName} \n"
         //     "globpass = ${globals.password} globEmail = ${globals.email} globPhone = ${globals.phoneNumber} globGend = ${globals.gender} \n"
         //     "globDate = ${globals.dateOfBirth}");
 

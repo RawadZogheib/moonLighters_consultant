@@ -62,7 +62,7 @@ class _contratState extends State<contrat> {
     );
   }
 
-  _createCards(String id, String saveName, String description,
+  _createCards(String Id, String saveName, String description,
       String dollar_per_hour, String max_payment, String code) {
     HexColor color1;
     HexColor color2;
@@ -84,7 +84,7 @@ class _contratState extends State<contrat> {
       return Container();
     }
     return MyContratCard(
-      id: id,
+      Id: Id,
       saveName: saveName,
       text: "test1",
       description: description,
@@ -97,7 +97,7 @@ class _contratState extends State<contrat> {
       //dark
       asset: 'Assets/Office/accessLogo.png',
       onTap: () {
-        globals.contrat_Id = id;
+        globals.contrat_Id = Id;
         globals.contrat_name = saveName;
         globals.contrat_description = description;
         globals.contrat_dollar_per_hour = dollar_per_hour;

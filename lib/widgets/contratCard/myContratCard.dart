@@ -4,7 +4,7 @@ import 'package:mn_consultant/globals/globals.dart' as globals;
 import 'package:mn_consultant/widgets/other/contratLogo.dart';
 
 class MyContratCard extends StatelessWidget {
-  final String id;
+  final String Id;
   final String saveName;
   final String text;
   final String description;
@@ -17,7 +17,7 @@ class MyContratCard extends StatelessWidget {
   final onTap;
 
   MyContratCard({
-    required this.id,
+    required this.Id,
     required this.text,
     required this.saveName,
     required this.description,
