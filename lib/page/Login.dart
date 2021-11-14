@@ -237,7 +237,7 @@ class _loginState extends State<login> {
         //print(body[1][0]);
 
         //print(body[1][1]);
-          globals.id = body[1][1].toString();
+          globals.Id = body[1][1].toString();
           //print(body[1][2]);
           globals.fName = body[1][2].toString();
           //print(body[1][3]);

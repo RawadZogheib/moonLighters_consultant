@@ -113,7 +113,7 @@ class _contratState extends State<contrat> {
     try {
       var data = {
         'version':globals.version,
-        'account_id': globals.id,
+        'account_id': globals.Id,
       };
       var res = await CallApi()
           .postData(data, 'Contrat/Control/(Control)loadContratConsultant.php');
