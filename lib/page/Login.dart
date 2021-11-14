@@ -3,16 +3,16 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:mn_consultant/api/my_api.dart';
-import 'package:mn_consultant/widgets/Button/myButton.dart';
+import 'package:mn_consultant/widgets/button/myButton.dart';
 
-import 'package:mn_consultant/widgets/Other/errorAlertDialog.dart';
+import 'package:mn_consultant/widgets/other/errorAlertDialog.dart';
 
 import 'package:mn_consultant/widgets/Code/codeDialog.dart';
 import 'package:mn_consultant/widgets/Code/sixCode.dart';
 
-import 'package:mn_consultant/widgets/TextInput/myErrorText.dart';
+import 'package:mn_consultant/widgets/textInput/myErrorText.dart';
 
-import 'package:mn_consultant/widgets/TextInput/myTextInput.dart';
+import 'package:mn_consultant/widgets/textInput/myTextInput.dart';
 import 'package:mn_consultant/globals/globals.dart' as globals;
 import 'package:shared_preferences/shared_preferences.dart';
 
