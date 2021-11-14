@@ -1,13 +1,12 @@
 import 'dart:convert';
 
-import 'package:flutter/cupertino.dart';
 import 'package:mn_consultant/api/my_api.dart';
-import 'package:mn_consultant/widgets/Button/myButton.dart';
-import 'package:mn_consultant/widgets/Code/myCode.dart';
+import 'package:mn_consultant/widgets/button/myButton.dart';
+import 'package:mn_consultant/widgets/code/myCode.dart';
 import 'package:mn_consultant/globals/globals.dart' as globals;
 import 'package:flutter/material.dart';
-import 'package:mn_consultant/widgets/Button/myButton.dart';
-import 'package:mn_consultant/widgets/TextInput/myErrorText.dart';
+import 'package:mn_consultant/widgets/button/myButton.dart';
+import 'package:mn_consultant/widgets/textInput/myErrorText.dart';
 
 import 'myCode.dart';
 

@@ -4,7 +4,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:mn_consultant/api/my_api.dart';
 import 'package:mn_consultant/hexColor/hexColor.dart';
-import 'package:mn_consultant/widgets/Other/errorAlertDialog.dart';
+import 'package:mn_consultant/widgets/other/errorAlertDialog.dart';
 import 'package:mn_consultant/globals/globals.dart' as globals;
 import 'package:mn_consultant/widgets/contratCard/myContratCard.dart';
 import 'package:mn_consultant/widgets/other/plusContratCard.dart';
