@@ -110,7 +110,7 @@ class _contratState extends State<contrat> {
   }
 
   void _loadPage() async {
-    //try {
+    try {
       var data = {
         'version':globals.version,
         'account_id': globals.id,
@@ -182,13 +182,13 @@ class _contratState extends State<contrat> {
             builder: (BuildContext context) => ErrorAlertDialog(
                 message: globals.errorElse));
       }
-    // } catch (e) {
-    //   print(e);
-    //   showDialog(
-    //       context: context,
-    //       builder: (BuildContext context) =>
-    //           ErrorAlertDialog(message: globals.errorException));
-    // }
+     } catch (e) {
+       print(e);
+       showDialog(
+           context: context,
+           builder: (BuildContext context) =>
+               ErrorAlertDialog(message: globals.errorException));
+     }
   }
 
   _back() {
