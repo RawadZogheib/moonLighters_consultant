@@ -209,7 +209,7 @@ class _loginState extends State<login> {
   _verifc() async{
     errTxt = '';
 
-    try {
+    //try {
       print("hey");
       // if(globals.email != null && globals.password != null){
       // print(globals.email);
@@ -291,13 +291,13 @@ class _loginState extends State<login> {
         });
       }
 
-    }catch(e){
-      print(e);
-      setState(() {
-        errTxt = globals.errorException;
-        colErrTxt = globals.red_1;
-      });
-    }
+    // }catch(e){
+    //   print(e);
+    //   setState(() {
+    //     errTxt = globals.errorException;
+    //     colErrTxt = globals.red_1;
+    //   });
+    // }
   }
 
   _back(){
