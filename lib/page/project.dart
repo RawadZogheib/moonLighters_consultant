@@ -170,27 +170,31 @@ class _ProjectState extends State<Project> {
               message: globals.error10));
     } else if (body[0] == "errorToken") {
       children.clear();
-      _globRegist();
-      _globContrat();
+
       showDialog(
           context: context,
           builder: (BuildContext context) =>
-              ErrorAlertDialog(message: globals.errorToken, goHome: true));
+              ErrorAlertDialog(message: globals.errorToken, goHome: true,
+              onPress: (){
+                _globRegist();
+                _globContrat();
+              }));
     } else if(body[0] == "errorVersion"){
       children.clear();
       // print("errorrrrrrVersionnnnnn");
       // print("${globals.Id}  ${globals.userName}  ${globals.email}  ${globals.dateOfBirth}  ${globals.gender}  ${globals.fName}  ${globals.lName}\n");
       // print("${globals.contrat_Id}  ${globals.contrat_code}  ${globals.contrat_description}  ${globals.contrat_description}  ${globals.contrat_dollar_per_hour}  ${globals.contrat_max_payment}  ${globals.contrat_name}");
 
-      _globRegist();
-      _globContrat();
-
       // print("${globals.Id}  ${globals.userName}  ${globals.email}  ${globals.dateOfBirth}  ${globals.gender}  ${globals.fName}  ${globals.lName}\n");
       // print("${globals.contrat_Id}  ${globals.contrat_code}  ${globals.contrat_description}  ${globals.contrat_description}  ${globals.contrat_dollar_per_hour}  ${globals.contrat_max_payment}  ${globals.contrat_name}");
       showDialog(
           context: context,
           builder: (BuildContext context) =>
-              ErrorAlertDialog(message: globals.errorVersion, goHome: true));
+              ErrorAlertDialog(message: globals.errorVersion, goHome: true,
+              onPress: (){
+                _globRegist();
+                _globContrat();
+              },));
     } else {
       showDialog(
           context: context,

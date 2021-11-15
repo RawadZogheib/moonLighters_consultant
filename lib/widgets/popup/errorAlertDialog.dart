@@ -6,6 +6,7 @@ class ErrorAlertDialog extends StatelessWidget {
   final String message;
   final double circularBorderRadius;
   final bool goHome;
+  var onPress;
 
   ErrorAlertDialog({
     this.title = "Error",
@@ -13,6 +14,7 @@ class ErrorAlertDialog extends StatelessWidget {
     this.circularBorderRadius = 8.0,
     this.bgColor = Colors.white,
     this.goHome = false,
+    this.onPress,
   })  : assert(bgColor != null),
         assert(circularBorderRadius != null);
 
@@ -27,6 +29,7 @@ class ErrorAlertDialog extends StatelessWidget {
       actions: <Widget>[
         TextButton(
           onPressed: () {
+            onPress;
             if(goHome == true){
               Navigator.pushNamedAndRemoveUntil(context,'/Login', (route) => false);
             }},
