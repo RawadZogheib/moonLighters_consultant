@@ -76,7 +76,7 @@ class _loginState extends State<login> {
                         spaceAllowed: false,
                         obscure: false ,
                         onChange: (value){
-                          globals.email = value;
+                          globals.emailLogin = value;
                         }),
                   ),
 
@@ -95,8 +95,8 @@ class _loginState extends State<login> {
                       spaceAllowed: false,
                       obscure: true,
                       onChange: (value){
-                        globals.password = value;
-                        //print(globals.password);
+                        globals.passwordLogin = value;
+                        //print(globals.Login);
                       },
                     ),
                   ),
@@ -162,7 +162,7 @@ class _loginState extends State<login> {
      colErrTxtPass = globals.transparent;
 
 
-    if(globals.email != null && globals.email != ''){
+    if(globals.emailLogin != null && globals.emailLogin != ''){
       setState(() {
         colEmail = Colors.blue.shade50;
         colEmail_1 = Colors.blue.shade900;
@@ -179,7 +179,7 @@ class _loginState extends State<login> {
       });
     }
 
-    if(globals.password != null && globals.password != ''){
+    if(globals.passwordLogin != null && globals.passwordLogin != ''){
       setState(() {
         colPass = Colors.blue.shade50;
         colPass_1 = Colors.blue.shade900;
@@ -211,13 +211,13 @@ class _loginState extends State<login> {
 
     try {
       print("hey");
-      // if(globals.email != null && globals.password != null){
-      // print(globals.email);
-      // print(globals.password);
+      // if(globals.emailLogin != null && globals.passwordLogin != null){
+      // print(globals.emailLogin);
+      // print(globals.passwordLogin);
       var data = {
         'version': globals.version,
-        'email': globals.email,
-        'password': globals.password
+        'email': globals.emailLogin,
+        'password': globals.passwordLogin
       };
 
       var res = await CallApi().postData(
@@ -256,7 +256,7 @@ class _loginState extends State<login> {
 
 
         // print("globalsId = ${globals.Id} globFName = ${globals.fName} \n globLName = ${globals.lName} globUsernm = ${globals.userName} \n"
-        //     "globpass = ${globals.password} globEmail = ${globals.email} globPhone = ${globals.phoneNumber} globGend = ${globals.gender} \n"
+        //     "globpass = ${globals.passwordLogin} globEmail = ${globals.emailLogin} globPhone = ${globals.phoneNumber} globGend = ${globals.gender} \n"
         //     "globDate = ${globals.dateOfBirth}");
 
         Navigator.pushNamed(context, '/Contrat');
@@ -301,8 +301,8 @@ class _loginState extends State<login> {
   }
 
   _back(){
-    globals.email = null;
-    globals.password = null;
+    globals.emailLogin = null;
+    globals.passwordLogin = null;
     setState(() {
        colEmail = globals.blue;               //email
        colEmail_1 = globals.blue_1;

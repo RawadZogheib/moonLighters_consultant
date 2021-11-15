@@ -121,6 +121,8 @@ class _contratState extends State<contrat> {
       print(res.body);
       List<dynamic> body = json.decode(res.body);
 
+      //print("hellozzzzzzz");
+
       if (body[0] == "success") {
         SharedPreferences localStorage = await SharedPreferences.getInstance();
         localStorage.setString('token', body[1]);
@@ -134,6 +136,9 @@ class _contratState extends State<contrat> {
             body[2][i][4], //contrat_max_payment
             body[2][i][5], //contrat_code
           ));
+          // print("childrennnnnn");
+          // print(children.length);
+          // print("welcomeeee");
           // print(body[2][i][0]);
           // print(body[2][i][1]);
           // print(body[2][i][2]);
@@ -162,12 +167,18 @@ class _contratState extends State<contrat> {
                 ErrorAlertDialog(message: globals.error4));
       } else if (body[0] == "errorToken") {
         children.clear();
+        _globRegist();
         showDialog(
             context: context,
             builder: (BuildContext context) =>
                 ErrorAlertDialog(message: globals.errorToken, goHome: true));
       } else if(body[0] == "errorVersion"){
         children.clear();
+        // print("errorrrrrrVersionnnnnn");
+        // print("${globals.Id}  ${globals.userName}  ${globals.email}  ${globals.dateOfBirth}  ${globals.gender}  ${globals.fName}  ${globals.lName}\n");
+        _globRegist();
+        // print("${globals.Id}  ${globals.userName}  ${globals.email}  ${globals.dateOfBirth}  ${globals.gender}  ${globals.fName}  ${globals.lName}\n");
+
         showDialog(
             context: context,
             builder: (BuildContext context) =>
@@ -216,5 +227,19 @@ class _contratState extends State<contrat> {
     // children.clear();
     // Navigator.of(context).pop();
   }
+
+  _globRegist(){
+    setState(() {
+      globals.Id = null;
+      globals.email = null;
+      globals.fName = null;
+      globals.lName = null;
+      globals.gender = null;
+      globals.phoneNumber = null;
+      globals.userName = null;
+      globals.dateOfBirth = null;
+    });
+  }
+
 
 }

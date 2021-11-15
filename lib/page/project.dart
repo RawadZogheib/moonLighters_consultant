@@ -147,6 +147,10 @@ class _ProjectState extends State<Project> {
           body[2][i][2], //project_description
           body[2][i][3], //project_type
         ));
+        // print(body[2][i][0]);
+        // print(body[2][i][1]);
+        // print(body[2][i][2]);
+        // print(body[2][i][3]);
       }
       setState(() {
         children.add(PlusProjectCard());
@@ -166,12 +170,23 @@ class _ProjectState extends State<Project> {
               message: globals.error10));
     } else if (body[0] == "errorToken") {
       children.clear();
+      _globRegist();
+      _globContrat();
       showDialog(
           context: context,
           builder: (BuildContext context) =>
               ErrorAlertDialog(message: globals.errorToken, goHome: true));
     } else if(body[0] == "errorVersion"){
       children.clear();
+      // print("errorrrrrrVersionnnnnn");
+      // print("${globals.Id}  ${globals.userName}  ${globals.email}  ${globals.dateOfBirth}  ${globals.gender}  ${globals.fName}  ${globals.lName}\n");
+      // print("${globals.contrat_Id}  ${globals.contrat_code}  ${globals.contrat_description}  ${globals.contrat_description}  ${globals.contrat_dollar_per_hour}  ${globals.contrat_max_payment}  ${globals.contrat_name}");
+
+      _globRegist();
+      _globContrat();
+
+      // print("${globals.Id}  ${globals.userName}  ${globals.email}  ${globals.dateOfBirth}  ${globals.gender}  ${globals.fName}  ${globals.lName}\n");
+      // print("${globals.contrat_Id}  ${globals.contrat_code}  ${globals.contrat_description}  ${globals.contrat_description}  ${globals.contrat_dollar_per_hour}  ${globals.contrat_max_payment}  ${globals.contrat_name}");
       showDialog(
           context: context,
           builder: (BuildContext context) =>
@@ -227,4 +242,29 @@ class _ProjectState extends State<Project> {
     children.clear();
     Navigator.of(context).pop();
   }
+
+  _globRegist(){
+    setState(() {
+      globals.Id = null;
+      globals.email = null;
+      globals.fName = null;
+      globals.lName = null;
+      globals.gender = null;
+      globals.phoneNumber = null;
+      globals.userName = null;
+      globals.dateOfBirth = null;
+    });
+  }
+
+  _globContrat(){
+    setState(() {
+      globals.contrat_Id = null;
+      globals.contrat_name = null;
+      globals.contrat_dollar_per_hour = null;
+      globals.contrat_max_payment = null;
+      globals.contrat_description = null;
+      globals.contrat_code = null;
+    });
+  }
+
 }
