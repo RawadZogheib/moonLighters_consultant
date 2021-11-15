@@ -10,7 +10,7 @@ import 'package:mn_consultant/widgets/projectCard/powerPointCard.dart';
 import 'package:mn_consultant/widgets/projectCard/publisherCard.dart';
 import 'package:mn_consultant/widgets/projectCard/wordCard.dart';
 import 'package:mn_consultant/globals/globals.dart' as globals;
-import 'package:mn_consultant/widgets/other/errorAlertDialog.dart';
+import 'package:mn_consultant/widgets/popup/errorAlertDialog.dart';
 import 'package:mn_consultant/widgets/other/plusProjectCard.dart';
 import 'package:desktop_window/desktop_window.dart';
 import 'package:shared_preferences/shared_preferences.dart';

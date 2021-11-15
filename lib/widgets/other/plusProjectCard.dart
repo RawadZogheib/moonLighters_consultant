@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mn_consultant/globals/globals.dart' as globals;
-import 'package:mn_consultant/widgets/other/projectDialog.dart';
+import 'package:mn_consultant/widgets/popup/PopupProjectName.dart';
+import 'package:mn_consultant/widgets/popup/projectDialog.dart';
 
 class PlusProjectCard extends StatelessWidget {
   PlusProjectCard();
@@ -32,7 +33,7 @@ class PlusProjectCard extends StatelessWidget {
         //_launchApp();
         showDialog(
             context: context,
-            builder: (BuildContext context) => ProjectDialog());
+            builder: (BuildContext context) => PopupProjectName());
       },
     );
   }

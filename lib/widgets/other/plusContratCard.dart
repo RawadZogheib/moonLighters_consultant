@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mn_consultant/globals/globals.dart' as globals;
-import 'package:mn_consultant/widgets/other/contratDialog.dart';
+import 'package:mn_consultant/widgets/popup/contratDialog.dart';
 
 class PlusContratCard extends StatelessWidget {
   var onTap;

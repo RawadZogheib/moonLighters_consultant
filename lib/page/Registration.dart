@@ -11,7 +11,7 @@ import 'package:mn_consultant/widgets/button/myButton.dart';
 import 'package:mn_consultant/widgets/Code/codeDialog.dart';
 import 'package:mn_consultant/widgets/Code/sixCode.dart';
 import 'package:mn_consultant/widgets/dateOfBirth/myDateOfBirth.dart';
-import 'package:mn_consultant/widgets/other/errorAlertDialog.dart';
+import 'package:mn_consultant/widgets/popup/errorAlertDialog.dart';
 import 'package:mn_consultant/widgets/radioButton/myRadioButton.dart';
 import 'package:mn_consultant/widgets/textInput/myErrorText.dart';
 import 'package:mn_consultant/widgets/textInput/myTextInput.dart';

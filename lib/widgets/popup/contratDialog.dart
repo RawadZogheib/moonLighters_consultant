@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mn_consultant/globals/globals.dart' as globals;
 import 'package:mn_consultant/widgets/button/myButton.dart';
-import 'package:mn_consultant/widgets/other/errorAlertDialog.dart';
+import 'package:mn_consultant/widgets/popup/errorAlertDialog.dart';
 import 'package:mn_consultant/widgets/textInput/myTextInput.dart';
 import 'package:sizer/sizer.dart';
 
