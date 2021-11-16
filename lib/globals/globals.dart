@@ -4,7 +4,6 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:mn_consultant/hexColor/hexColor.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 //Version
 const String version = "v1.0";
@@ -89,13 +88,3 @@ String? ProjectName = null;
   globals.contrat_code.toString());
 
 */
-getId() async{
-  SharedPreferences localStorage = await SharedPreferences.getInstance();
-  String? myId = localStorage.getString('Id');
-  return myId;
-}
-
-setId(String data) async{
-  SharedPreferences localStorage = await SharedPreferences.getInstance();
-  localStorage.setString('Id', data);
-}

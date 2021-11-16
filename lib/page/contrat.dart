@@ -111,9 +111,10 @@ class _contratState extends State<contrat> {
 
   void _loadPage() async {
     try {
+      SharedPreferences localStorage = await SharedPreferences.getInstance();
       var data = {
         'version':globals.version,
-        'account_Id': globals.getId(),
+        'account_Id': localStorage.getString('Id'),
       };
       var res = await CallApi()
           .postData(data, 'Contrat/Control/(Control)loadContratConsultant.php');

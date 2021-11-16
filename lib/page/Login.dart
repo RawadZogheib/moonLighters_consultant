@@ -233,25 +233,33 @@ class _loginState extends State<login> {
 
         SharedPreferences localStorage = await SharedPreferences.getInstance();
         localStorage.setString('token', body[1][0]);
+        localStorage.setString('Id', body[1][1]);
+        localStorage.setString('fName', body[1][2]);
+        localStorage.setString('lName', body[1][3]);
+        localStorage.setString('userName', body[1][4]);
+        localStorage.setString('email', body[1][5]);
+        localStorage.setString('phoneNumber', body[1][6]);
+        localStorage.setString('gender', body[1][7]);
+        localStorage.setString('dateOfBirth', body[1][8]);
 
         //print(body[1][0]);
 
-        //print(body[1][1]);
-          globals.Id = globals.setId(body[1][1].toString());
-          //print(body[1][2]);
-          globals.fName = body[1][2].toString();
-          //print(body[1][3]);
-          globals.lName = body[1][3].toString();
-          //print(body[1][4]);
-          globals.userName = body[1][4].toString();
-        //print(body[1][5]);
-          globals.email = body[1][5].toString();
-        //print(body[1][6]);
-          globals.phoneNumber = body[1][6].toString();
-        //print(body[1][7]);
-          globals.gender = body[1][7].toString();
-        //print(body[1][8]);
-          globals.dateOfBirth = body[1][8].toString();
+        // //print(body[1][1]);
+        //   globals.Id = body[1][1].toString();
+        //   //print(body[1][2]);
+        //   globals.fName = body[1][2].toString();
+        //   //print(body[1][3]);
+        //   globals.lName = body[1][3].toString();
+        //   //print(body[1][4]);
+        //   globals.userName = body[1][4].toString();
+        // //print(body[1][5]);
+        //   globals.email = body[1][5].toString();
+        // //print(body[1][6]);
+        //   globals.phoneNumber = body[1][6].toString();
+        // //print(body[1][7]);
+        //   globals.gender = body[1][7].toString();
+        // //print(body[1][8]);
+        //   globals.dateOfBirth = body[1][8].toString();
 
 
 
