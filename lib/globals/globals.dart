@@ -77,6 +77,7 @@ String? contrat_max_payment = null;
 String? contrat_description = null;
 String? contrat_code = null;
 
+//Name of New Project (page[/popup/PopupProjectName.dart])
 String? ProjectName = null;
 
 /*
