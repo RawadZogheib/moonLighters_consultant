@@ -59,9 +59,7 @@ Color colRadioMale_1 = globals.blue_1;
 Color colRadioFem = globals.blue;
 Color colRadioFem_1 = globals.blue_1;
 
-Color colGender = globals.transparent; //genderError
 
-Color colDateBirth = globals.transparent; //date ErrorText
 
 String errTxtFname = ''; // for error textFields
 Color colErrTxtFname = globals.transparent;
@@ -77,9 +75,9 @@ String errTxtRepass = ''; // for error textFields
 Color colErrTxtRepass = globals.transparent;
 String errTxtPhone = ''; // for error textFields
 Color colErrTxtPhone = globals.transparent;
-String errTxtGender = ''; // for error textFields
+String errTxtGender = '';//genderError
 Color colErrTxtGender = globals.transparent;
-String errTxtDate = ''; // for error textFields
+String errTxtDate = ''; //date ErrorText
 Color colErrTxtDate = globals.transparent;
 String errTxt = '';
 Color colErrTxt = globals.transparent;
@@ -92,6 +90,53 @@ class registration extends StatefulWidget {
 }
 
 class _registrationState extends State<registration> {
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+
+    globals.clearRegist();
+  }
+
+
+
+  _sendCodeToMail() async {
+    int min = 100000; //min and max values act as your 6 digit range
+    int max = 999999;
+    var randomizer = new Random();
+    var rNum = min + randomizer.nextInt(max - min);
+
+    String username = 'mimo.nr0520@gmail.com';
+    String password = 'Micho@1dark';
+
+    final smtpServer = gmail(username, password);
+    final message = Message()
+      ..from = Address(username)
+      ..recipients.add('michel.nachar10@gmail.com')
+    // ..ccRecipients.addAll(['destCc1@example.com', 'destCc2@example.com'])
+    // ..bccRecipients.add(Address('bccAddress@example.com'))
+      ..subject = 'Test Dart Mailer library :: 😀 :: ${DateTime.now()}'
+    //..text = 'This is the plain text.\nThis is line 2 of the text part.'
+      ..html = "<h1>Code: </h1>\n<p>$rNum</p>";
+
+    try {
+      final sendReport = await send(message, smtpServer);
+      print('Message sent: ' + sendReport.toString());
+      globals.sixCodeNb = rNum;
+      print(globals.sixCodeNb);
+      //Toast.show("clickedd",context, duration: 3, gravity: Toast.CENTER);
+    } on MailerException catch (e) {
+      print(e);
+      print('Message not sent.');
+      for (var p in e.problems) {
+        print('Problem: ${p.code}: ${p.msg}');
+      }
+    }
+  }
+
+
+
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
@@ -799,16 +844,9 @@ class _registrationState extends State<registration> {
 
 
   _back(){
-    globals.fName = null;
-    globals.lName = null;
-    globals.userName = null;
-    globals.email = null;
-    globals.password = null;
-    globals.repassword = null;
-    globals.phoneNumber = null;
-    globals.gender = null;
-    globals.dateOfBirth = null;
     setState(() {
+      globals.clearRegist();
+
       colFName = globals.blue; //fname
       colFName_1 = globals.blue_1;
       colFName_2 = globals.blue_2;
@@ -830,21 +868,19 @@ class _registrationState extends State<registration> {
       colEmail = globals.blue; //email
       colEmail_1 = globals.blue_1;
       colEmail_2 = globals.blue_2;
-      colGender = globals.transparent; //genderError
-      colDateBirth = globals.transparent; //date ErrorText
-      colErrTxtFname = globals.transparent;
-      colErrTxtLname = globals.transparent;
-      colErrTxtUsr = globals.transparent;
-      colErrTxtEmail = globals.transparent;
-      colErrTxtPass = globals.transparent;
-      colErrTxtRepass = globals.transparent;
-      colErrTxtPhone = globals.transparent;
-      colErrTxtGender = globals.transparent;
+      errTxtDate = ''; //date ErrorText
+      errTxtFname = '';
+      errTxtLname = '';
+      errTxtUsr = '';
+      errTxtEmail = '';
+      errTxtPass = '';
+      errTxtRepass = '';
+      errTxtPhone = '';
+      errTxtGender = '';//genderError
       colRadioMale = globals.blue; // background color for gender button
       colRadioMale_1 = globals.blue_1;
       colRadioFem = globals.blue;
       colRadioFem_1 = globals.blue_1;
-      colErrTxtDate = globals.transparent;
       colDateOfBirth = globals.blue;
       colDateOfBirth_1 = globals.blue_1;
       colDateOfBirth_2 = globals.blue_2;

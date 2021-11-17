@@ -29,10 +29,16 @@ class ErrorAlertDialog extends StatelessWidget {
       actions: <Widget>[
         TextButton(
           onPressed: () {
-            onPress;
-            if(goHome == true){
-              Navigator.pushNamedAndRemoveUntil(context,'/Login', (route) => false);
-            }},
+            if (onPress != null) {
+              onPress();
+            }
+            if (goHome == true) {
+              Navigator.pushNamedAndRemoveUntil(
+                  context, '/Login', (route) => false);
+            } else {
+              Navigator.pop(context);
+            }
+          },
           child: const Text('OK'),
         ),
       ],

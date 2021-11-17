@@ -130,7 +130,7 @@ class _ProjectState extends State<Project> {
     SharedPreferences localStorage = await SharedPreferences.getInstance();
     var data = {
       'version':globals.version,
-      'account_Id': localStorage.getString('Id'),
+      'account_Id': globals.Id,
       'contrat_Id': globals.contrat_Id,
     };
     var res = await CallApi().postData(data, 'Project/Control/(Control)loadProject.php');
@@ -183,7 +183,7 @@ class _ProjectState extends State<Project> {
     } else if(body[0] == "errorVersion"){
       children.clear();
       // print("errorrrrrrVersionnnnnn");
-      // print("${globals.Id}  ${globals.userName}  ${globals.email}  ${globals.dateOfBirth}  ${globals.gender}  ${globals.fName}  ${globals.lName}\n");
+      // print("${globals.Id}");
       // print("${globals.contrat_Id}  ${globals.contrat_code}  ${globals.contrat_description}  ${globals.contrat_description}  ${globals.contrat_dollar_per_hour}  ${globals.contrat_max_payment}  ${globals.contrat_name}");
 
       // print("${globals.Id}  ${globals.userName}  ${globals.email}  ${globals.dateOfBirth}  ${globals.gender}  ${globals.fName}  ${globals.lName}\n");
@@ -206,6 +206,14 @@ class _ProjectState extends State<Project> {
 
 
   void _checkVariables() async {
+    SharedPreferences localStorage = await SharedPreferences.getInstance();
+    globals.Id = localStorage.getString('Id');
+    globals.contrat_Id = localStorage.getString('contrat_Id');
+    globals.contrat_name = localStorage.getString('contrat_name');
+    globals.contrat_description = localStorage.getString('contrat_description');
+    globals.contrat_dollar_per_hour = localStorage.getString('contrat_dollar_per_hour');
+    globals.contrat_max_payment = localStorage.getString('contrat_max_payment');
+    globals.contrat_code = localStorage.getString('contrat_code');
     if (globals.contrat_Id == null ||
         globals.contrat_name == null ||
         globals.contrat_description == null ||
@@ -251,24 +259,12 @@ class _ProjectState extends State<Project> {
   _globRegist(){
     setState(() {
       globals.Id = null;
-      globals.email = null;
-      globals.fName = null;
-      globals.lName = null;
-      globals.gender = null;
-      globals.phoneNumber = null;
-      globals.userName = null;
-      globals.dateOfBirth = null;
     });
   }
 
   _globContrat(){
     setState(() {
-      globals.contrat_Id = null;
-      globals.contrat_name = null;
-      globals.contrat_dollar_per_hour = null;
-      globals.contrat_max_payment = null;
-      globals.contrat_description = null;
-      globals.contrat_code = null;
+      globals.clearContrat();
     });
   }
 

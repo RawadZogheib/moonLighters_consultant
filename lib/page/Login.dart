@@ -40,6 +40,16 @@ class login extends StatefulWidget {
 }
 
 class _loginState extends State<login> {
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+
+    globals.clearLogin();
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return WillPopScope(

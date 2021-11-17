@@ -48,7 +48,7 @@ const String errorException = "OOPs! Something went wrong. Try again in few seco
 const String codeFailed = "your code is incorrect";
 
 //for 6 digit code
-String? sixCodeNb = null;
+int? sixCodeNb = null;
 
 //Registration  (page[/signup.dart /registration.dart /registration2.dart /registration3.dart])
 String? Id = null;
@@ -88,3 +88,49 @@ String? ProjectName = null;
   globals.contrat_code.toString());
 
 */
+
+clearRegist(){
+  fName = null;
+  lName = null;
+  userName = null;
+  email = null;
+  password = null;
+  repassword = null;
+  phoneNumber = null;
+  gender = null;
+  dateOfBirth = null;
+}
+
+clearContrat(){
+  contrat_Id = null;
+  contrat_name = null;
+  contrat_dollar_per_hour = null;
+  contrat_max_payment = null;
+  contrat_description = null;
+  contrat_code = null;
+}
+
+clearLogin(){
+  emailLogin = null;
+  passwordLogin = null;
+}
+
+clearAll(){
+  fName = null;
+  lName = null;
+  userName = null;
+  email = null;
+  password = null;
+  repassword = null;
+  phoneNumber = null;
+  gender = null;
+  dateOfBirth = null;
+  contrat_Id = null;
+  contrat_name = null;
+  contrat_dollar_per_hour = null;
+  contrat_max_payment = null;
+  contrat_description = null;
+  contrat_code = null;
+  emailLogin = null;
+  passwordLogin = null;
+}
