@@ -127,9 +127,10 @@ class _ProjectState extends State<Project> {
   }
 
   void _loadPage() async {
+    SharedPreferences localStorage = await SharedPreferences.getInstance();
     var data = {
       'version':globals.version,
-      'account_Id': globals.Id,
+      'account_Id': localStorage.getString('Id'),
       'contrat_Id': globals.contrat_Id,
     };
     var res = await CallApi().postData(data, 'Project/Control/(Control)loadProject.php');
