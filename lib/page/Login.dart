@@ -146,6 +146,7 @@ class _loginState extends State<login> {
                                   color: Colors.blue
                               ),),
                               onTap: (){
+                                _nullLogin();
                                 Navigator.pushNamed(context, '/Registration');
                               },
                             ),
@@ -321,6 +322,23 @@ class _loginState extends State<login> {
 
   _back(){
     exit;
+  }
+
+  _nullLogin(){
+    setState(() {
+      globals.clearLogin();
+
+      errTxtEmail = '';
+      errTxtPass = '';
+      errTxt = '';
+      colEmail = globals.blue;               //email
+      colEmail_1 = globals.blue_1;
+      colEmail_2 = globals.blue_2;
+      colPass = globals.blue;               //password
+      colPass_1 = globals.blue_1;
+      colPass_2 = globals.blue_2;
+
+    });
   }
 
 }
