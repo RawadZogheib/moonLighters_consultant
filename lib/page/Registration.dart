@@ -149,6 +149,11 @@ class _registrationState extends State<registration> {
             "Sign up",
             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20.0),
           ),
+          leading: new IconButton(
+              icon: new Icon(Icons.arrow_back),
+              onPressed: () {
+                _back();
+              }),
         ),
         body: Center(
           child: ListView(
@@ -843,7 +848,7 @@ class _registrationState extends State<registration> {
   }
 
 
-  _back(){
+  _back() {
     setState(() {
       globals.clearRegist();
     });
