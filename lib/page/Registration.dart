@@ -695,16 +695,16 @@ class _registrationState extends State<registration> {
           var body = json.decode(res.body);
           print(body);
           if (body[0] == "true") {
-            //_sendCodeToMail();
-            Navigator.pushNamed(context, '/Login');
-            // Navigator.pushNamed(context, '/home');
-            // showDialog(
-            //     context: context,
-            //     builder: (BuildContext context) => codeDialog()).then((exit) {
-            //   setState(() {
-            //     _nullTextCode();
-            //   });
-            // });
+            _sendCodeToMail();
+            //Navigator.pushNamed(context, '/Login');
+            //Navigator.pushNamed(context, '/home');
+            showDialog(
+                context: context,
+                builder: (BuildContext context) => codeDialog()).then((exit) {
+              setState(() {
+                _nullTextCode();
+              });
+            });
 
           } else if (body[0] == "error1") {
             setState(() {
