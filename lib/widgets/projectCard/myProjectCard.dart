@@ -100,7 +100,7 @@ class MySavesCard extends StatelessWidget {
               ),
               child: InkWell(
                 onTap: () {
-                  Navigator.pushNamed(context, '/MyTimer');
+                  //Navigator.pushNamed(context, '/MyTimer');
                   onTap;
                 },
                 child: Transform.rotate(

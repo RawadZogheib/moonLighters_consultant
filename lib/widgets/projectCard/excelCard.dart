@@ -1,8 +1,11 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:mn_consultant/hexColor/hexColor.dart';
-
+import 'package:mn_consultant/globals/globals.dart' as globals;
+import 'package:process_run/shell.dart';
 import 'myProjectCard.dart';
-
+var shell = Shell();
 class ExcelCard extends StatelessWidget {
   final String saveName;
   final String description;
@@ -20,8 +23,17 @@ class ExcelCard extends StatelessWidget {
       color1: HexColor("#33c481"), //light
       color2: HexColor("#185c37"), //dark
       asset: 'Assets/projectLogo/excelLogo.png',
-      onTap: () {
+      onTap: () async {
         print("Excel");
+        if (Platform.isWindows) {
+          await shell.run('''type nul > ${globals.projectName}.xlsx''');
+          await shell.run('''start ${globals.projectName}.xlsx''');
+        }
+    else if (Platform.isMacOS || Platform.isLinux) {
+          // Excel Documents
+          await shell.run('''touch ${globals.projectName}.xlsx''');
+          await shell.run('''open ${globals.projectName}.xlsx''');
+        }
       },
     );
   }

@@ -39,11 +39,11 @@ class _PopupProjectNameState extends State<PopupProjectName> {
                     spaceAllowed: false,
                     obscure:false,
                     onChange: (value) {
-                      globals.ProjectName = value;
+                      globals.projectName = value;
                     },
                   ),
                   Padding(
-                    padding: const EdgeInsets.all(18.0),
+                    padding: const EdgeInsets.all(25.0),
                     child: Container(
                         child: InkWell(
                           child: submitButton(submitBtnText: 'Submit'),

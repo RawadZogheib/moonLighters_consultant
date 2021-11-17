@@ -15,16 +15,16 @@ class submitButton extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Container(
-            width: 60,
-            height: 60,
+            width: 115,
+            height: 40,
             decoration: BoxDecoration(
-                color: globals.blue_2,
+                color: globals.blue,
                 borderRadius: BorderRadius.all(Radius.circular(14)),
-                border: Border.all(color: globals.blue_1, width: 4)),
+                border: Border.all(color: globals.blue, width: 4)),
             child: Center(
               child: Text(
                 submitBtnText,
-                style: TextStyle(fontSize: 19 , color: globals.blue_1),
+                style: TextStyle(fontSize: 14 , color: globals.blue_1),
               ),
             ),
           ),

@@ -77,7 +77,7 @@ String? contrat_description = null;
 String? contrat_code = null;
 
 //Name of New Project (page[/popup/PopupProjectName.dart])
-String? ProjectName = null;
+String? projectName = null;
 
 /*
   print(globals.contrat_Id.toString() + " " +
