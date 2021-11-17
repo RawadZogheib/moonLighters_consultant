@@ -38,6 +38,11 @@ class _contratState extends State<contrat> {
       child: Scaffold(
         appBar: AppBar(
           title: Text("Tracking App"),
+          leading: new IconButton(
+              icon: new Icon(Icons.arrow_back),
+              onPressed: () {
+                _back();
+              }),
         ),
         backgroundColor: globals.whiteBlue,
         body: Container(
