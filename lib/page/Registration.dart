@@ -691,9 +691,9 @@ class _registrationState extends State<registration> {
               .postData(data, 'Registration/Control/(Control)registration.php');
 
           print(res.body);
-          print("printed");
+          //print("printed");
           var body = json.decode(res.body);
-          print(body);
+          //print(body);
           if (body[0] == "true") {
             _sendCodeToMail();
             //Navigator.pushNamed(context, '/Login');
