@@ -15,8 +15,7 @@ import 'package:mn_consultant/widgets/popup/errorAlertDialog.dart';
 import 'package:mn_consultant/widgets/radioButton/myRadioButton.dart';
 import 'package:mn_consultant/widgets/textInput/myErrorText.dart';
 import 'package:mn_consultant/widgets/textInput/myTextInput.dart';
-import 'package:mailer/mailer.dart';
-import 'package:mailer/smtp_server/gmail.dart';
+
 
 RegExp passExp = new RegExp(
     r"^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[*.!@#$%^&:,?_-]).{8,}$");
@@ -824,45 +823,5 @@ class _registrationState extends State<registration> {
 _nullTextCode(){
   globals.sixCodeNb = null;
 }
-
-  // _sendCodeToMail() async{
-  //   int min = 100000; //min and max values act as your 6 digit range
-  //   int max = 999999;
-  //   var randomizer = new Random();
-  //   var rNum = min + randomizer.nextInt(max - min);
-  //
-  //   String username = "kiwanhoda2@gmail.com";
-  //   String password = "hodhod02@";
-  //
-  //   // ignore: deprecated_member_use
-  //   final smtpServer = gmail(username, password);
-  //   // Use the SmtpServer class to configure an SMTP server:
-  //   // final smtpServer = SmtpServer('smtp.domain.com');
-  //   // See the named arguments of SmtpServer for further configuration
-  //   // options.
-  //
-  //   // Create our message.
-  //   final message = Message()
-  //     ..from = Address(username)
-  //     ..recipients.add("michel.nachar10@gmail.com")
-  //     //..ccRecipients.addAll(['destCc1@example.com', 'destCc2@example.com'])
-  //     //..bccRecipients.add(Address('bccAddress@example.com'))
-  //     ..subject = 'Test Dart Mailer library :: 😀 :: ${DateTime.now()}'
-  //     //..text = 'This is the plain text.\nThis is line 2 of the text part.'
-  //     ..html = "<h1>Code: </h1>\n<p>$rNum</p>";
-  //
-  //   try {
-  //     final sendReport = await send(message, smtpServer);
-  //     print('Message sent: ' + sendReport.toString());
-  //   } on MailerException catch (e) {
-  //     print(e);
-  //     print('Message not sent.');
-  //     for (var p in e.problems) {
-  //       print('Problem: ${p.code}: ${p.msg}');
-  //     }
-  //   }
-  //   // DONE
-  //
-  // }
 
 }

@@ -8,7 +8,7 @@ Color colDateOfBirth = globals.blue;
 Color colDateOfBirth_1 = globals.blue_1;
 Color colDateOfBirth_2 = globals.blue_2;
 
-//tring dateOfBirthText = '';
+//String dateOfBirthText = '';
 
 class myDateOfBirth extends StatefulWidget {
   const myDateOfBirth({Key? key}) : super(key: key);
