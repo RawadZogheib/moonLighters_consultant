@@ -1,17 +1,14 @@
-
-
 import 'package:mn_consultant/globals/globals.dart' as globals;
 import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 
-
 Color colDateOfBirth = globals.blue;
 Color colDateOfBirth_1 = globals.blue_1;
 Color colDateOfBirth_2 = globals.blue_2;
 
-String dateOfBirthText = '';
+//tring dateOfBirthText = '';
 
 class myDateOfBirth extends StatefulWidget {
   const myDateOfBirth({Key? key}) : super(key: key);
@@ -22,7 +19,7 @@ class myDateOfBirth extends StatefulWidget {
 
 class _myDateOfBirthState extends State<myDateOfBirth> {
   DateTime _date = DateTime.now();
-  TextEditingController _datecontroller = new TextEditingController();
+  //TextEditingController _datecontroller = new TextEditingController();
 
   var myFormat = DateFormat('yyyy-MM-dd');
   Future<Null?> _selectDate(BuildContext context) async{
@@ -41,7 +38,7 @@ class _myDateOfBirthState extends State<myDateOfBirth> {
 
 
         globals.dateOfBirth = myFormat.format(_date);
-        dateOfBirthText = myFormat.format(_date);
+        //dateOfBirthText = myFormat.format(_date);
       });
     }
   }
@@ -50,8 +47,8 @@ class _myDateOfBirthState extends State<myDateOfBirth> {
     return Container(
       width: MediaQuery.of(context).size.width * 0.86,
       child: TextFormField(
-        key: Key(dateOfBirthText),
-        initialValue: dateOfBirthText,
+        key: Key(globals.dateOfBirth.toString()),
+        initialValue: globals.dateOfBirth,
         //controller: _datecontroller,
         cursorColor: colDateOfBirth_1,
         readOnly: true,
@@ -68,7 +65,7 @@ class _myDateOfBirthState extends State<myDateOfBirth> {
           fillColor: colDateOfBirth,
           labelText: "Date of birth",
           labelStyle: TextStyle( color: colDateOfBirth_1),
-          hintText: ('${globals.dateOfBirth}'),
+          //hintText: ('${globals.dateOfBirth}'),
           hintStyle: TextStyle(
             color: colDateOfBirth_1,
             fontSize: 15.0,
