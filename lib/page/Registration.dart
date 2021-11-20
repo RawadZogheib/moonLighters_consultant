@@ -817,7 +817,7 @@ class _registrationState extends State<registration> {
       globals.clearRegist();
     });
 
-    Navigator.pop(context);
+    Navigator.of(context).pop();
   }
 
 
