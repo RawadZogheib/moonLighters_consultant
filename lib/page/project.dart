@@ -127,7 +127,6 @@ class _ProjectState extends State<Project> {
   }
 
   void _loadPage() async {
-    SharedPreferences localStorage = await SharedPreferences.getInstance();
     var data = {
       'version':globals.version,
       'account_Id': globals.Id,
