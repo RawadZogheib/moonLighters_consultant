@@ -6,7 +6,9 @@ import 'package:mn_consultant/api/my_api.dart';
 import 'package:mn_consultant/globals/globals.dart' as globals;
 import 'package:mn_consultant/hexColor/hexColor.dart';
 import 'package:mn_consultant/widgets/contratCard/myContratCard.dart';
+import 'package:mn_consultant/widgets/demo/demoFolder.dart';
 import 'package:mn_consultant/widgets/other/plusContratCard.dart';
+import 'package:mn_consultant/widgets/popup/ContainerAttachedFile.dart';
 import 'package:mn_consultant/widgets/popup/errorAlertDialog.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -108,6 +110,46 @@ class _contratState extends State<contrat> {
     //break;
   }
 
+  //creating demoFolder
+  _createDemoFolder(String Id, String saveName) {
+    HexColor color1;
+    HexColor color2;
+    if (_status == "0") {
+      _status = "1";
+      color1 = HexColor("#41a5ee"); //light
+      color2 = HexColor("#103f91"); //dark
+
+    } else if (_status == "1") {
+      _status = "0";
+      color1 = HexColor("#ca64ea"); //light
+      color2 = HexColor("#7719aa"); //dark
+
+    } else {
+      showDialog(
+          context: context,
+          builder: (BuildContext context) =>
+              ErrorAlertDialog(message: "\"$_status\" is not a type of file."));
+      return Container();
+    }
+    return demoFolder(
+      Id: Id,
+      saveName: "Demo",
+      color1: color1,
+      //light
+      color2: color2,
+      //dark
+      asset: 'Assets/Office/accessLogo.png',
+      onTap: (){
+        showDialog(
+            context: context,
+            builder: (BuildContext context) => ContainerAttachedFile());
+      },
+    );
+    //break;
+  }
+
+
+
   void _loadPage() async {
     try {
       SharedPreferences localStorage = await SharedPreferences.getInstance();
@@ -144,7 +186,8 @@ class _contratState extends State<contrat> {
             body[2][i][3], //contrat_dollar_per_hour
             body[2][i][4], //contrat_max_payment
             body[2][i][5], //contrat_code
-          ));
+          )
+          );
           // print("childrennnnnn");
           // print(children.length);
           // print("welcomeeee");
@@ -155,7 +198,7 @@ class _contratState extends State<contrat> {
           // print(body[2][i][4]);
           // print(body[2][i][5]);
         }
-
+        children.add(_createDemoFolder("1","Demo"));
         setState(() {
           children.add(PlusContratCard(
             onTap: () {

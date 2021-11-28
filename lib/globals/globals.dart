@@ -2,6 +2,7 @@ library mnconsultant.globals;
 
 import 'dart:ui';
 
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:mn_consultant/hexColor/hexColor.dart';
 
@@ -10,6 +11,7 @@ const String version = "v1.0";
 
 //Server Ip  (page[/my_api.dart])
 const String myIP = "http://147.78.45.13/";
+
 
 
 //Colors
@@ -88,6 +90,9 @@ String? projectName = null;
   globals.contrat_code.toString());
 
 */
+//AttachedFile
+String? filePicked = "";
+PlatformFile? selectedFile;
 
 clearRegist(){
   fName = null;
