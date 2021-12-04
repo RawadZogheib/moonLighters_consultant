@@ -137,15 +137,15 @@ class _ProjectState extends State<Project> {
     List<dynamic> body = json.decode(res.body);
 
     if (body[0] == "success") {
-      SharedPreferences localStorage = await SharedPreferences.getInstance();
-      localStorage.setString('token', body[1]);
+      //SharedPreferences localStorage = await SharedPreferences.getInstance();
+      //localStorage.setString('token', body[1]);
 
       for (var i = 0; i < body[2].length; i++) {
         children.add(_createCards(
-          body[2][i][0], //project_Id
-          body[2][i][1], //project_name
-          body[2][i][2], //project_description
-          body[2][i][3], //project_type
+          body[1][i][0], //project_Id
+          body[1][i][1], //project_name
+          body[1][i][2], //project_description
+          body[1][i][3], //project_type
         ));
         // print(body[2][i][0]);
         // print(body[2][i][1]);

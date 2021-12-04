@@ -174,18 +174,18 @@ class _contratState extends State<contrat> {
       //print("hellozzzzzzz");
 
       if (body[0] == "success") {
-        SharedPreferences localStorage = await SharedPreferences.getInstance();
-        localStorage.setString('token', body[1]);
+        //SharedPreferences localStorage = await SharedPreferences.getInstance();
+        //localStorage.setString('token', body[1]);
 
-        for (var i = 0; i < body[2].length; i++) {
+        for (var i = 0; i < body[1].length; i++) {
           //localStorage.setString('contrat_Id', value)
           children.add(_createCards(
-            body[2][i][0], //contrat_Id
-            body[2][i][1], //contrat_name
-            body[2][i][2], //contrat_description
-            body[2][i][3], //contrat_dollar_per_hour
-            body[2][i][4], //contrat_max_payment
-            body[2][i][5], //contrat_code
+            body[1][i][0], //contrat_Id
+            body[1][i][1], //contrat_name
+            body[1][i][2], //contrat_description
+            body[1][i][3], //contrat_dollar_per_hour
+            body[1][i][4], //contrat_max_payment
+            body[1][i][5], //contrat_code
           )
           );
           // print("childrennnnnn");
