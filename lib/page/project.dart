@@ -140,7 +140,7 @@ class _ProjectState extends State<Project> {
       //SharedPreferences localStorage = await SharedPreferences.getInstance();
       //localStorage.setString('token', body[1]);
 
-      for (var i = 0; i < body[2].length; i++) {
+      for (var i = 0; i < body[1].length; i++) {
         children.add(_createCards(
           body[1][i][0], //project_Id
           body[1][i][1], //project_name
