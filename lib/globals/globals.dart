@@ -11,7 +11,7 @@ const String version = "v1.0";
 
 //Server Ip  (page[/my_api.dart])
 const String myIP = "http://147.78.45.13/";
-
+//const String myIP = "http://127.0.0.1/";
 
 
 //Colors
