@@ -648,7 +648,8 @@ class _registrationState extends State<registration> {
           'repassword': globals.repassword,
           'dateOfBirth': globals.dateOfBirth,
           'phoneNumber': globals.phoneNumber,
-          'gender': globals.gender
+          'gender': globals.gender,
+          'isRegistered' : globals.isRegistered
         };
 
         var res = await CallApi()

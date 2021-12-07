@@ -36,7 +36,7 @@ const String error2_5 = "It's not an email format.";
 //const String error2_6 = "It's not a university email.";
 const String error2_7 = "phone Number already exists";
 const String error3 = "Please make sure your passwords match.";
-const String error4 = "Cannot connect to the dataBase.";
+const String error4 = "Cannot connect to the dataBase.";    // error in insert or delete or update etc...
 const String error5 = "UserName already exist.";
 const String error6 = "Email already exist.";
 const String error7 = "Field cannot be empty.";
@@ -63,6 +63,7 @@ String? gender = null;
 String? phoneNumber = null;
 String? userName = null;
 String? dateOfBirth = null;
+String? isRegistered = '0'; // 0 -> false -> not registered
 
 
 //login  (page[/login.dart /login2.dart])

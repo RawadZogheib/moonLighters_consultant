@@ -185,6 +185,11 @@ class _sixCodeState extends State<sixCode> {
           errCode = globals.codeFailed;
           colErrCode = globals.red_1;
         });
+      }else if(body[0] == "error7") {
+        setState(() {
+          errCode = globals.error7;
+          colErrCode = globals.red_1;
+        });
       }
 
 

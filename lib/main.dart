@@ -5,6 +5,7 @@ import 'package:mn_consultant/page/Registration.dart';
 import 'package:mn_consultant/page/contrat.dart';
 import 'package:mn_consultant/page/project.dart';
 import 'package:mn_consultant/widgets/Code/sixCode.dart';
+import 'package:mn_consultant/widgets/code/sicCodeLogin.dart';
 import 'package:sizer/sizer.dart';
 
 void main() {
@@ -32,6 +33,7 @@ class MyApp extends StatelessWidget {
             '/Project': (context) => Project(),
             '/FirstPage': (context) => FirstPage(),
             '/sixCode': (context)=>sixCode(),
+            '/sixCodeLogin': (context)=>sixCodeLogin(),
           });
      });
   }
