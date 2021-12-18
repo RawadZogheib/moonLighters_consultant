@@ -3,7 +3,7 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:mn_consultant/widgets/code/sicCodeLogin.dart';
+import 'package:mn_consultant/widgets/code/sixCodeLogin.dart';
 import 'package:sizer/sizer.dart';
 
 class codeDialogLogin extends StatefulWidget {
