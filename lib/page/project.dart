@@ -2,6 +2,8 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:mn_consultant/api/my_api.dart';
+import 'package:mn_consultant/hexColor/hexColor.dart';
+import 'package:mn_consultant/widgets/popup/ContainerAttachedFile.dart';
 
 import 'package:mn_consultant/widgets/projectCard/accessCard.dart';
 import 'package:mn_consultant/widgets/projectCard/excelCard.dart';
@@ -81,6 +83,16 @@ class _ProjectState extends State<Project> {
               ),
             ],
           ),
+        ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            // Add your onPressed code here!
+            showDialog(
+                context: context,
+                builder: (BuildContext context) => ContainerAttachedFile());
+          },
+          backgroundColor: Colors.blue,
+          child: const Icon(Icons.add),
         ),
       ),
     );
@@ -266,5 +278,6 @@ class _ProjectState extends State<Project> {
       globals.clearContrat();
     });
   }
+
 
 }
