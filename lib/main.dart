@@ -5,7 +5,7 @@ import 'package:mn_consultant/page/Registration.dart';
 import 'package:mn_consultant/page/contrat.dart';
 import 'package:mn_consultant/page/project.dart';
 import 'package:mn_consultant/widgets/Code/sixCode.dart';
-import 'package:mn_consultant/widgets/code/sicCodeLogin.dart';
+import 'package:mn_consultant/widgets/code/sixCodeLogin.dart';
 import 'package:sizer/sizer.dart';
 
 void main() {
