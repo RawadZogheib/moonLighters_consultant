@@ -161,7 +161,7 @@ class _contratState extends State<contrat> {
       globals.phoneNumber = localStorage.getString('phoneNumber');
       globals.gender = localStorage.getString('gender');
       globals.dateOfBirth = localStorage.getString('dateOfBirth');
-      globals.isRegistered = localStorage.getString('isRegistered');
+
       var data = {
         'version': globals.version,
         'account_Id': globals.Id,

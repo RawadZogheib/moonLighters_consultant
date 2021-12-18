@@ -261,7 +261,7 @@ class _loginState extends State<login> {
         localStorage.setString('phoneNumber', body[2][5]);
         localStorage.setString('gender', body[2][6]);
         localStorage.setString('dateOfBirth', body[2][7]);
-        localStorage.setString('isRegistered', body[2][8]);
+
 
         //print(body[1][0]);
 

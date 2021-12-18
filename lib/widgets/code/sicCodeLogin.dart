@@ -25,6 +25,12 @@ class sixCodeLogin extends StatefulWidget {
 
 class _sixCodeLoginState extends State<sixCodeLogin> {
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+
+    errCode = '';
+  }
   Widget build(BuildContext context) {
     return Container(
         child: Column(
@@ -50,12 +56,38 @@ class _sixCodeLoginState extends State<sixCodeLogin> {
                     myErrorText(errorText: errCode, color: colErrCode),
 
                     Padding(
+                      padding: EdgeInsets.only(top: 15),
+                      child: Row(
+                        children: [
+                          Row(
+                            children: [
+                              InkWell(
+                                child: Text("Resend Code",style: TextStyle(
+                                    color: Colors.blue
+                                ),),
+                                onTap: (){
+                                  //_nullLogin();
+                                  //Navigator.pushNamed(context, '/Registration');
+                                  _resendCode();
+                                },
+                              ),
+                              Padding(
+                                padding: EdgeInsets.only(left: MediaQuery.of(context).size.width * 0.1),
+                                child: Text("0:00"),
+                              ),
+                            ],
+                          )
+                        ],
+                      ),
+                    ),
+
+                    Padding(
                       padding: const EdgeInsets.all(18.0),
                       child: Container(
                           child: InkWell(
                             child: btn(btnText: 'Send'),
                             onTap: (){
-                              print(globals.sixCodeNb);
+                              //print(globals.sixCodeNb);
                               _checkCode();
                             },
                           )),
@@ -201,7 +233,7 @@ class _sixCodeLoginState extends State<sixCodeLogin> {
         localStorage.setString('phoneNumber', body[2][5]);
         localStorage.setString('gender', body[2][6]);
         localStorage.setString('dateOfBirth', body[2][7]);
-        localStorage.setString('isRegistered', body[2][8]);
+
 
       }else if(body[0] == "codeFailed"){
         setState(() {
@@ -226,5 +258,37 @@ class _sixCodeLoginState extends State<sixCodeLogin> {
       colErrCode = globals.red_1;
     }
   }
+
+  _resendCode() async{
+    errCode = "";
+    colErrCode = globals.transparent;
+
+    var data = {
+      'version': globals.version,
+      'email': globals.emailLogin,
+    };
+
+    var res = await CallApi().postData(
+        data, 'Login/Control/(Control)resendMail.php');
+    print(res);
+    //print("pppppp");
+    List<dynamic> body = json.decode(res.body);
+    print(res.body);
+
+    if(body[0] == "error2_5"){
+      errCode = globals.error2_5;
+      colErrCode = globals.red_1;
+    }else if(body[0] == "codeException"){
+      errCode = globals.codeException;
+      colErrCode = globals.red_1;
+    }else{
+      setState(() {
+        errCode = globals.errorElse;
+        colErrCode = globals.red_1;
+      });
+    }
+
+  }
+
 
 }

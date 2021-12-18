@@ -633,11 +633,13 @@ class _registrationState extends State<registration> {
           globals.lName != null &&
           globals.userName != null &&
           globals.password != null &&
+          globals.repassword != null &&
           globals.dateOfBirth != null &&
           globals.gender != null &&
           globals.phoneNumber != null) {
         //if(exp.hasMatch(globals.password!)) {
         //if (globals.password == globals.repassword) {
+        //print("hhhhhhhhhh");
         var data = {
           'version': globals.version,
           'email': globals.email,
@@ -649,9 +651,22 @@ class _registrationState extends State<registration> {
           'dateOfBirth': globals.dateOfBirth,
           'phoneNumber': globals.phoneNumber,
           'gender': globals.gender,
-          'isRegistered' : globals.isRegistered
+          'isRegistered' : globals.isRegistered,
         };
 
+        // print('version '+ globals.version.toString()+'\n'+
+        //   'email '+ globals.email.toString()+'\n'+
+        //   'fname '+ globals.fName.toString()+'\n'+
+        //   'lname '+ globals.lName.toString()+'\n'+
+        //   'userName '+ globals.userName.toString()+'\n'+
+        //   'password '+ globals.password.toString()+'\n'+
+        //   'repassword '+ globals.repassword.toString()+'\n'+
+        //   'dateOfBirth '+ globals.dateOfBirth.toString()+'\n'+
+        //   'phoneNumber '+ globals.phoneNumber.toString()+'\n'+
+        //   'gender '+ globals.gender.toString()+'\n'+
+        //   'isRegistered ' + globals.isRegistered.toString());
+
+        //print("ooooooo");
         var res = await CallApi()
             .postData(data, 'Registration/Control/(Control)registration.php');
 
