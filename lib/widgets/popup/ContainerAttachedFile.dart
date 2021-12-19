@@ -1,19 +1,19 @@
 import 'dart:convert';
 import 'dart:io';
-import 'package:dio/dio.dart';
+import 'package:async/async.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:http_parser/http_parser.dart';
-import 'package:mn_consultant/api/my_api.dart';
 import 'package:path/path.dart';
 import 'package:mn_consultant/globals/globals.dart' as globals;
 import 'package:mn_consultant/widgets/button/myButton.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sizer/sizer.dart';
 import 'package:http/http.dart' as http;
 
-File? _file;
-PlatformFile? _platformFile;
+var file;
+var filepath;
+var contratId;
 
 
 class ContainerAttachedFile extends StatefulWidget {
@@ -35,18 +35,20 @@ class _ContainerAttachedFileState extends State<ContainerAttachedFile> {
             padding: EdgeInsets.all(8.0),
             children: [
               IconButton(onPressed:()async {
+                SharedPreferences localStorage = await SharedPreferences.getInstance();
+                contratId= localStorage.getString('contrat_Id');
                 selectFile();
-              //   setState(() {
-              //     globals.filePicked;
-              // });
+                setState(() {
+                 globals.filePicked;
+               });
               }, icon: Icon(Icons.attach_file), iconSize: 48),
-              //Text('File Name: ${globals.filePicked}'),
+              Text('File Name: ${globals.filePicked}'),
 
               Padding(
                 padding: const EdgeInsets.all(38.0),
                 child: myButton(btnText: "Submit",
                   onPress:(){
-                  //_fileUpload();
+                    uploadFile('file', File('${filepath}'));
                   } ,
                   ),
               ),
@@ -59,19 +61,11 @@ class _ContainerAttachedFileState extends State<ContainerAttachedFile> {
   }
 
   Future selectFile() async {
-    final file = await FilePicker.platform.pickFiles(
-        type: FileType.custom
-    );
-
-    if (file != null) {
-      setState(() {
-        _file = File(file.files.single.path!); // file
-        print(_file);
-        _platformFile = file.files.first; //platformfile
-        print(_platformFile);
-
-      });
-    }
+    final result=await FilePicker.platform.pickFiles();
+    if(result==null)return;
+    file = result.files.first;
+    filepath=file.path;
+    globals.filePicked=file.name;
   }
 
 
@@ -101,24 +95,29 @@ class _ContainerAttachedFileState extends State<ContainerAttachedFile> {
 //               // bytes: null, readStream: null, size: 0)
 //     pathFile=file!.path;
 //   }
-  void uploadFileToServer(File imagePath) async {
-    var request = new http.MultipartRequest(
-        "POST", Uri.parse('http://127.0.0.1/moonLighters/Demo/Control/(Control)fileUpload.php'));
-    request.fields['name'] = 'Rohan';
-    request.fields['title'] = 'My first image';
-    request.files.add(await http.MultipartFile.fromPath('profile_pic', imagePath.path));
-    request.send().then((response) {
-      http.Response.fromStream(response).then((onValue) {
-        try {
-          // get your response here...
-        } catch (e) {
-          // handle exeption
-        }
-      });
+  uploadFile(String title, File file) async {
+    //edit
+// open a bytestream
+    var stream = http.ByteStream(DelegatingStream.typed(file.openRead()));
+    var length = await file.length();
+    var uri = Uri.parse(
+        "http://127.0.0.1/moonLighters/Demo/Control/(Control)uploadFile.php");
+    var request = new http.MultipartRequest("POST", uri);
+    var multipartFile = new http.MultipartFile('file', stream, length,
+        filename: basename(file.path));
+    request.fields["version"] = globals.version;
+    request.fields["contratId"] = contratId;
+    request.files.add(multipartFile);
+
+    // send
+    var response = await request.send();
+    print(response.statusCode);
+
+    // listen for response
+    response.stream.transform(utf8.decoder).listen((value) {
+      print(value);
     });
   }
-
-
 
     // if (file == null) return;
     //

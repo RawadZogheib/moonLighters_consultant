@@ -40,11 +40,10 @@ dependencies:
   flutter_ion: ^0.5.4
   shell: ^2.0.0
   process_run: ^0.12.2+2
-  file_picker: ^4.2.4
-  path: ^1.8.0
-
-  dio: ^4.0.4
   http_parser: ^4.0.0
+  file_picker: ^4.2.8
+  path: ^1.8.0
+  async: ^2.8.1
 
 
 dev_dependencies:
