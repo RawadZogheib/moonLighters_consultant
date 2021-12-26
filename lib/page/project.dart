@@ -162,9 +162,11 @@ class _ProjectState extends State<Project> {
           // print(body[2][i][2]);
           // print(body[2][i][3]);
         }
-        setState(() {
-          children.add(PlusProjectCard());
-        });
+        if (mounted) {
+          setState(() {
+            children.add(PlusProjectCard());
+          });
+        }
       } else if (body[0] == "error4") {
         showDialog(
             context: context,
