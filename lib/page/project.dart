@@ -2,19 +2,16 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:mn_consultant/api/my_api.dart';
-import 'package:mn_consultant/hexColor/hexColor.dart';
+import 'package:mn_consultant/globals/globals.dart' as globals;
+import 'package:mn_consultant/widgets/other/plusProjectCard.dart';
 import 'package:mn_consultant/widgets/popup/ContainerAttachedFile.dart';
-
+import 'package:mn_consultant/widgets/popup/errorAlertDialog.dart';
 import 'package:mn_consultant/widgets/projectCard/accessCard.dart';
 import 'package:mn_consultant/widgets/projectCard/excelCard.dart';
 import 'package:mn_consultant/widgets/projectCard/oneNoteCard.dart';
 import 'package:mn_consultant/widgets/projectCard/powerPointCard.dart';
 import 'package:mn_consultant/widgets/projectCard/publisherCard.dart';
 import 'package:mn_consultant/widgets/projectCard/wordCard.dart';
-import 'package:mn_consultant/globals/globals.dart' as globals;
-import 'package:mn_consultant/widgets/popup/errorAlertDialog.dart';
-import 'package:mn_consultant/widgets/other/plusProjectCard.dart';
-import 'package:desktop_window/desktop_window.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 final children = <Widget>[];
@@ -25,7 +22,6 @@ class Project extends StatefulWidget {
 }
 
 class _ProjectState extends State<Project> {
-
   /*
   late String contrat_Id;
   late String contrat_name;
@@ -60,7 +56,6 @@ class _ProjectState extends State<Project> {
 
   @override
   Widget build(BuildContext context) {
-
     return WillPopScope(
       onWillPop: () async => _back(),
       child: Scaffold(
@@ -139,82 +134,94 @@ class _ProjectState extends State<Project> {
   }
 
   void _loadPage() async {
-    var data = {
-      'version':globals.version,
-      'account_Id': globals.Id,
-      'contrat_Id': globals.contrat_Id,
-    };
-    var res = await CallApi().postData(data, 'Project/Control/(Control)loadProject.php');
-    print(res.body);
-    List<dynamic> body = json.decode(res.body);
+    try {
+      children.clear();
+      var data = {
+        'version': globals.version,
+        'account_Id': globals.Id,
+        'contrat_Id': globals.contrat_Id,
+      };
+      var res = await CallApi()
+          .postData(data, 'Project/Control/(Control)loadProject.php');
+      print(res.body);
+      List<dynamic> body = json.decode(res.body);
 
-    if (body[0] == "success") {
-      //SharedPreferences localStorage = await SharedPreferences.getInstance();
-      //localStorage.setString('token', body[1]);
+      if (body[0] == "success") {
+        //SharedPreferences localStorage = await SharedPreferences.getInstance();
+        //localStorage.setString('token', body[1]);
 
-      for (var i = 0; i < body[1].length; i++) {
-        children.add(_createCards(
-          body[1][i][0], //project_Id
-          body[1][i][1], //project_name
-          body[1][i][2], //project_description
-          body[1][i][3], //project_type
-        ));
-        // print(body[2][i][0]);
-        // print(body[2][i][1]);
-        // print(body[2][i][2]);
-        // print(body[2][i][3]);
+        for (var i = 0; i < body[1].length; i++) {
+          children.add(_createCards(
+            body[1][i][0], //project_Id
+            body[1][i][1], //project_name
+            body[1][i][2], //project_description
+            body[1][i][3], //project_type
+          ));
+          // print(body[2][i][0]);
+          // print(body[2][i][1]);
+          // print(body[2][i][2]);
+          // print(body[2][i][3]);
+        }
+        setState(() {
+          children.add(PlusProjectCard());
+        });
+      } else if (body[0] == "error4") {
+        showDialog(
+            context: context,
+            builder: (BuildContext context) =>
+                ErrorAlertDialog(message: globals.error4));
+      } else if (body[0] == "error10") {
+        setState(() {
+          children.add(PlusProjectCard());
+        });
+        showDialog(
+            context: context,
+            builder: (BuildContext context) =>
+                ErrorAlertDialog(message: globals.error10));
+      } else if (body[0] == "errorToken") {
+        children.clear();
+
+        showDialog(
+            context: context,
+            builder: (BuildContext context) => ErrorAlertDialog(
+                message: globals.errorToken,
+                goHome: true,
+                onPress: () {
+                  _globRegist();
+                  _globContrat();
+                }));
+      } else if (body[0] == "errorVersion") {
+        children.clear();
+        // print("errorrrrrrVersionnnnnn");
+        // print("${globals.Id}");
+        // print("${globals.contrat_Id}  ${globals.contrat_code}  ${globals.contrat_description}  ${globals.contrat_description}  ${globals.contrat_dollar_per_hour}  ${globals.contrat_max_payment}  ${globals.contrat_name}");
+
+        // print("${globals.Id}  ${globals.userName}  ${globals.email}  ${globals.dateOfBirth}  ${globals.gender}  ${globals.fName}  ${globals.lName}\n");
+        // print("${globals.contrat_Id}  ${globals.contrat_code}  ${globals.contrat_description}  ${globals.contrat_description}  ${globals.contrat_dollar_per_hour}  ${globals.contrat_max_payment}  ${globals.contrat_name}");
+        showDialog(
+            context: context,
+            builder: (BuildContext context) => ErrorAlertDialog(
+                  message: globals.errorVersion,
+                  goHome: true,
+                  onPress: () {
+                    _globRegist();
+                    _globContrat();
+                  },
+                ));
+      } else {
+        showDialog(
+            context: context,
+            builder: (BuildContext context) =>
+                ErrorAlertDialog(message: globals.errorElse));
       }
-      setState(() {
-        children.add(PlusProjectCard());
-      });
-    }else if(body[0] == "error4"){
-      showDialog(
-          context: context,
-          builder: (BuildContext context) => ErrorAlertDialog(
-              message: globals.error4));
-    }else if(body[0] == "error10"){
-      setState(() {
-        children.add(PlusProjectCard());
-      });
-      showDialog(
-          context: context,
-          builder: (BuildContext context) => ErrorAlertDialog(
-              message: globals.error10));
-    } else if (body[0] == "errorToken") {
-      children.clear();
-
+    } catch (e) {
+      print(e);
       showDialog(
           context: context,
           builder: (BuildContext context) =>
-              ErrorAlertDialog(message: globals.errorToken, goHome: true,
-              onPress: (){
-                _globRegist();
-                _globContrat();
-              }));
-    } else if(body[0] == "errorVersion"){
-      children.clear();
-      // print("errorrrrrrVersionnnnnn");
-      // print("${globals.Id}");
-      // print("${globals.contrat_Id}  ${globals.contrat_code}  ${globals.contrat_description}  ${globals.contrat_description}  ${globals.contrat_dollar_per_hour}  ${globals.contrat_max_payment}  ${globals.contrat_name}");
-
-      // print("${globals.Id}  ${globals.userName}  ${globals.email}  ${globals.dateOfBirth}  ${globals.gender}  ${globals.fName}  ${globals.lName}\n");
-      // print("${globals.contrat_Id}  ${globals.contrat_code}  ${globals.contrat_description}  ${globals.contrat_description}  ${globals.contrat_dollar_per_hour}  ${globals.contrat_max_payment}  ${globals.contrat_name}");
-      showDialog(
-          context: context,
-          builder: (BuildContext context) =>
-              ErrorAlertDialog(message: globals.errorVersion, goHome: true,
-              onPress: (){
-                _globRegist();
-                _globContrat();
-              },));
-    } else {
-      showDialog(
-          context: context,
-          builder: (BuildContext context) => ErrorAlertDialog(
-              message: globals.errorElse));
+              ErrorAlertDialog(message: globals.errorException));
     }
   }
-
 
   void _checkVariables() async {
     SharedPreferences localStorage = await SharedPreferences.getInstance();
@@ -222,7 +229,8 @@ class _ProjectState extends State<Project> {
     globals.contrat_Id = localStorage.getString('contrat_Id');
     globals.contrat_name = localStorage.getString('contrat_name');
     globals.contrat_description = localStorage.getString('contrat_description');
-    globals.contrat_dollar_per_hour = localStorage.getString('contrat_dollar_per_hour');
+    globals.contrat_dollar_per_hour =
+        localStorage.getString('contrat_dollar_per_hour');
     globals.contrat_max_payment = localStorage.getString('contrat_max_payment');
     globals.contrat_code = localStorage.getString('contrat_code');
     if (globals.contrat_Id == null ||
@@ -255,7 +263,6 @@ class _ProjectState extends State<Project> {
     }
   }
 
-
   _back() {
     globals.contrat_Id = null;
     globals.contrat_name = null;
@@ -267,17 +274,15 @@ class _ProjectState extends State<Project> {
     Navigator.of(context).pop();
   }
 
-  _globRegist(){
+  _globRegist() {
     setState(() {
       globals.Id = null;
     });
   }
 
-  _globContrat(){
+  _globContrat() {
     setState(() {
       globals.clearContrat();
     });
   }
-
-
 }

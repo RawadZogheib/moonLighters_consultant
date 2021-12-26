@@ -113,6 +113,7 @@ class _contratState extends State<contrat> {
 
   void _loadPage() async {
     try {
+      children.clear();
       SharedPreferences localStorage = await SharedPreferences.getInstance();
       globals.Id = localStorage.getString('Id');
       globals.fName = localStorage.getString('fName');
@@ -160,19 +161,22 @@ class _contratState extends State<contrat> {
           // print(body[2][i][4]);
           // print(body[2][i][5]);
         }
-        setState(() {
-          children.add(PlusContratCard(
-            onTap: () {
-              //Set null to use these variable to create a new contrat
-              globals.contrat_Id = null;
-              globals.contrat_name = null;
-              globals.contrat_dollar_per_hour = null;
-              globals.contrat_max_payment = null;
-              globals.contrat_description = null;
-              globals.contrat_code = null;
-            },
-          ));
-        });
+        if(mounted){
+          setState(() {
+            children.add(PlusContratCard(
+              onTap: () {
+                //Set null to use these variable to create a new contrat
+                globals.contrat_Id = null;
+                globals.contrat_name = null;
+                globals.contrat_dollar_per_hour = null;
+                globals.contrat_max_payment = null;
+                globals.contrat_description = null;
+                globals.contrat_code = null;
+              },
+            ));
+          });
+        }
+
       } else if (body[0] == "error4") {
         showDialog(
             context: context,
@@ -240,7 +244,7 @@ class _contratState extends State<contrat> {
   }
 
   _back() {
-    exit;
+    //exit(0);
     // globals.contrat_Id = null;
     // globals.contrat_name = null;
     // globals.contrat_dollar_per_hour = null;

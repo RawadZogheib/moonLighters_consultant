@@ -32,6 +32,8 @@ Color colErrTxtPass = globals.transparent;
 String errTxt = '';         //else error
 Color colErrTxt = globals.transparent;
 
+var oneClick;
+
 class login extends StatefulWidget {
   const login({Key? key}) : super(key: key);
 
@@ -45,7 +47,7 @@ class _loginState extends State<login> {
   void initState() {
     // TODO: implement initState
     super.initState();
-
+    oneClick = 0;
     globals.clearLogin();
   }
 
@@ -119,7 +121,9 @@ class _loginState extends State<login> {
                       child: btn(btnText: "Submit"),
                       onTap: (){
                         try {
-                          _LoginCtrl();
+                          if (oneClick == 0) {
+                            _LoginCtrl();
+                          }
                         }catch(e){
                           showDialog(
                               context: context,
@@ -165,6 +169,7 @@ class _loginState extends State<login> {
 
 
   _LoginCtrl(){
+    oneClick = 1;
     bool isEmpty = false;
 
      errTxtEmail = '';
