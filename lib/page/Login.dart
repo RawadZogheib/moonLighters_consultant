@@ -173,7 +173,7 @@ class _loginState extends State<login> {
     );
   }
 
-  _LoginCtrl() {
+  _LoginCtrl() async {
     oneClick = 1;
     bool isEmpty = false;
 
@@ -219,10 +219,11 @@ class _loginState extends State<login> {
     }
 
     if (isEmpty == false) {
-      _verifc();
+      await _verifc();
     } else {
       //do nothing
     }
+    oneClick = 0;
   }
 
   _verifc() async {
@@ -331,7 +332,6 @@ class _loginState extends State<login> {
         colErrTxt = globals.red_1;
       });
     }
-    oneClick = 0;
   }
 
   _back() {
