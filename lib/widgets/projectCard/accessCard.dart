@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mn_consultant/hexColor/hexColor.dart';
-import 'myProjectCard.dart';
+import 'package:mn_consultant/widgets/projectCard/myProjectCard.dart';
 
 class AccessCard extends StatelessWidget {
   final String saveName;

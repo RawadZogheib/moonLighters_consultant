@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:mn_consultant/hexColor/hexColor.dart';
 import 'package:mn_consultant/globals/globals.dart' as globals;
 import 'package:process_run/shell.dart';
-import 'myProjectCard.dart';
+import 'package:mn_consultant/widgets/projectCard/myProjectCard.dart';
 var shell = Shell();
 class ExcelCard extends StatelessWidget {
   final String saveName;
