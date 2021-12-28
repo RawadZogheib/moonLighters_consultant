@@ -13,9 +13,13 @@ class FirstPage extends StatefulWidget {
 class _FirstPage extends State<FirstPage>  {
 
   @override
-  Widget build(BuildContext context) {
-
+  void initState() {
+    // TODO: implement initState
+    super.initState();
     _timer();
+  }
+  @override
+  Widget build(BuildContext context) {
 
     return Scaffold(
       backgroundColor: globals.whiteBlue,
