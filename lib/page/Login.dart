@@ -26,6 +26,9 @@ Color colErrTxtPass = globals.transparent;
 String errTxt = ''; //else error
 Color colErrTxt = globals.transparent;
 
+String errTxtForgetPass = '';
+Color colErrForgetPass = globals.transparent;
+
 var oneClick;
 
 class login extends StatefulWidget {
@@ -136,12 +139,17 @@ class _loginState extends State<login> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Padding(
-                          padding: EdgeInsets.only(right: MediaQuery.of(context).size.width * 0.3),
+                          padding: EdgeInsets.only(
+                              right: MediaQuery.of(context).size.width * 0.05),
                           child: InkWell(
-                            child: Text('Forget Password',style: TextStyle(
-                              color: Colors.blue,
-                            ),),
-                            onTap: (){
+                            child: Text(
+                              'Forget Password',
+                              style: TextStyle(
+                                color: Colors.blue,
+                              ),
+                            ),
+                            onTap: () {
+                              //_checkIfIsRegist();
                               Navigator.pushNamed(context, '/forgetPassword');
                             },
                           ),
@@ -357,4 +365,22 @@ class _loginState extends State<login> {
   _nullTextCode() {
     globals.sixCodeNb = null;
   }
+
+  // _checkIfIsRegist() async {
+  //   try {
+  //     var data = {
+  //       'version': globals.version,
+  //       'email': globals.emailLogin,
+  //     };
+  //
+  //     var res =
+  //     await CallApi().postData(data, 'Login/Control/(Control)Login.php');
+  //     print(res);
+  //     print(res.body);
+  //     //print("pppppp");
+  //     List<dynamic> body = json.decode(res.body);
+  //   }catch(e){
+  //
+  //   }
+  // }
 }

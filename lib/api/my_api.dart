@@ -5,7 +5,7 @@ import 'package:mn_consultant/globals/globals.dart' as globals;
 
 
 class CallApi{
-  final String _url = '${globals.myIP}moonLighters/';
+  final String _url = '${globals.myIP}moonLighters_php/';
   final String _imgUrl='http://mark.dbestech.com/uploads/';
   getImage(){
     return _imgUrl;

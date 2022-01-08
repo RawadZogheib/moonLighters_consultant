@@ -34,8 +34,11 @@ class MyApp extends StatelessWidget {
             '/Project': (context) => Project(),
             '/FirstPage': (context) => FirstPage(),
             '/sixCode': (context)=>sixCode(),
+            '/sixCodeForgPass': (context)=>sixCodeForgetPass(),
             '/sixCodeLogin': (context)=>sixCodeLogin(),
             '/forgetPassword': (context)=>forgetPass(),
+            '/forgetPassword2': (context)=>forgetPass2(),
+
           });
      });
   }
