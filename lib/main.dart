@@ -4,8 +4,10 @@ import 'package:mn_consultant/page/Login.dart';
 import 'package:mn_consultant/page/Registration.dart';
 import 'package:mn_consultant/page/contrat.dart';
 import 'package:mn_consultant/page/forgetPassword.dart';
+import 'package:mn_consultant/page/forgetPassword2.dart';
 import 'package:mn_consultant/page/project.dart';
 import 'package:mn_consultant/widgets/Code/sixCode.dart';
+import 'package:mn_consultant/widgets/code/sixCodeForgetPass.dart';
 import 'package:mn_consultant/widgets/code/sixCodeLogin.dart';
 import 'package:sizer/sizer.dart';
 
