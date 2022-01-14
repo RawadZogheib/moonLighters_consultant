@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mn_consultant/page/FirstPage.dart';
 import 'package:mn_consultant/page/Login.dart';
 import 'package:mn_consultant/page/Registration.dart';
+import 'package:mn_consultant/page/WalletPage.dart';
 import 'package:mn_consultant/page/contrat.dart';
 import 'package:mn_consultant/page/forgetPassword.dart';
 import 'package:mn_consultant/page/forgetPassword2.dart';
@@ -40,6 +41,8 @@ class MyApp extends StatelessWidget {
             '/sixCodeLogin': (context)=>sixCodeLogin(),
             '/forgetPassword': (context)=>forgetPass(),
             '/forgetPassword2': (context)=>forgetPass2(),
+            '/WalletPage': (context)=>WalletPage(),
+
 
           });
      });

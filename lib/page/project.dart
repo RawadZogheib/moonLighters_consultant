@@ -60,6 +60,19 @@ class _ProjectState extends State<Project> {
       onWillPop: () async => _back(),
       child: Scaffold(
         appBar: AppBar(
+          actions: [
+            new IconButton(
+                icon: new Icon(Icons.account_balance_wallet),
+                onPressed: () {
+                  Navigator.pushNamed(context, '/WalletPage');
+                }),
+            new IconButton(
+                icon: new Icon(Icons.calendar_today),
+                onPressed: () {
+                  //_back();
+                  Navigator.pushNamed(context, '/CalendarPage');
+                })
+          ],
           title: Text("Tracking App"),
           leading: new IconButton(
               icon: new Icon(Icons.arrow_back),
