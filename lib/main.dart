@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mn_consultant/page/CalendarPage.dart';
 import 'package:mn_consultant/page/FirstPage.dart';
 import 'package:mn_consultant/page/Login.dart';
 import 'package:mn_consultant/page/Registration.dart';
@@ -41,6 +42,7 @@ class MyApp extends StatelessWidget {
             '/sixCodeLogin': (context)=>sixCodeLogin(),
             '/forgetPassword': (context)=>forgetPass(),
             '/forgetPassword2': (context)=>forgetPass2(),
+            '/CalendarPage' : (context) => CalendarPage(),
             '/WalletPage': (context)=>WalletPage(),
 
 
