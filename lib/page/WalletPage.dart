@@ -24,8 +24,8 @@ class _WalletPageState extends State<WalletPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: new IconButton(
-            icon: new Icon(Icons.arrow_back),
+        leading: IconButton(
+            icon: const Icon(Icons.arrow_back),
             onPressed: () {
               _back();
             }),

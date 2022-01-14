@@ -63,27 +63,35 @@ class _CalendarPageState extends State<CalendarPage> {
           ),
           Expanded(
               child: ClipRRect(
-                borderRadius: const BorderRadius.only(
-                  topLeft: Radius.circular(30),
-                  topRight: Radius.circular(30),
+            borderRadius: const BorderRadius.only(
+              topLeft: Radius.circular(30),
+              topRight: Radius.circular(30),
+            ),
+            child: Container(
+              color: globals.whiteBlue,
+              child: Padding(
+                padding: EdgeInsets.only(
+                  top: MediaQuery.of(context).size.height * 0.02,
+                  bottom: MediaQuery.of(context).size.height * 0.02,
+                  left: MediaQuery.of(context).size.height * 0.5,
+                  right: MediaQuery.of(context).size.height * 0.5,
                 ),
-                child: Container(
-                  color: globals.whiteBlue,
-                  child: ScrollableCleanCalendar(
-                    calendarController: calendarController,
-                    layout: Layout.DEFAULT,
-                    calendarCrossAxisSpacing: 4,
-                    scrollController: ScrollController(
-                      initialScrollOffset: MediaQuery.of(context).size.height * 1.4,
-                    ),
+                child: ScrollableCleanCalendar(
+                  calendarController: calendarController,
+                  layout: Layout.DEFAULT,
+                  calendarCrossAxisSpacing: 4,
+                  scrollController: ScrollController(
+                    initialScrollOffset:
+                        MediaQuery.of(context).size.height * 2.5,
                   ),
                 ),
-              )),
+              ),
+            ),
+          )),
         ],
       ),
     );
   }
-
 
   _open(String? thisDate) {
     showModalBottomSheet<void>(
