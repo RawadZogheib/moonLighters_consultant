@@ -171,6 +171,7 @@ class _ContratDialogState extends State<ContratDialog> {
                               ErrorAlertDialog(message: globals.error1));
                     } else {
                       //success
+                      _sendRequestContrat();
                     }
                   }),
             ),
@@ -178,5 +179,9 @@ class _ContratDialogState extends State<ContratDialog> {
         ),
       ),
     );
+  }
+  _sendRequestContrat(){
+
+
   }
 }

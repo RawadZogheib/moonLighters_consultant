@@ -1,10 +1,18 @@
+import 'dart:convert';
+import 'dart:io';
+
 import 'package:flip_card/flip_card.dart';
 import 'package:flutter/material.dart';
+import 'package:mn_consultant/api/my_api.dart';
 import 'package:mn_consultant/widgets/other/projectLogo.dart';
 import 'package:mn_consultant/globals/globals.dart' as globals;
+import 'package:process_run/shell.dart';
 
+import 'package:shared_preferences/shared_preferences.dart';
+var shell = Shell();
 class MySavesCard extends StatelessWidget {
   final String type;
+  final String dbType; // project_type needed for DB
   final String saveName;
   final String description;
   final Color color1; //light
@@ -12,14 +20,14 @@ class MySavesCard extends StatelessWidget {
   final String asset;
   final onTap;
 
-  MySavesCard(
-      {required this.type,
-        required this.saveName,
-        required this.description,
-        required this.color1,
-        required this.color2,
-        required this.asset,
-        required this.onTap});
+  MySavesCard({required this.type,
+    required this.dbType,
+    required this.saveName,
+    required this.description,
+    required this.color1,
+    required this.color2,
+    required this.asset,
+    required this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -59,11 +67,11 @@ class MySavesCard extends StatelessWidget {
                 children: [
 
                   Container(
-                      margin: EdgeInsets.only(top: 10,right: 31),
+                      margin: EdgeInsets.only(top: 10, right: 31),
                       child: ProjectLogo(asset: asset)),
 
                   Container(
-                    margin: EdgeInsets.only(top: 8.0,right: 31),
+                    margin: EdgeInsets.only(top: 8.0, right: 31),
                     child: Text(
                       type,
                       textDirection: TextDirection.ltr,
@@ -99,8 +107,17 @@ class MySavesCard extends StatelessWidget {
                 shape: BoxShape.circle,
               ),
               child: InkWell(
-                onTap: () {
+                onTap: () async {
                   //Navigator.pushNamed(context, '/MyTimer');
+                  print("fckjkkkkkkkkkkkkkkkkkkkkkkkk");
+                  bool directoryExists = await Directory('projects').exists();
+                  if(directoryExists) {
+                    //_createProject();
+                    print("directory exist");
+                  }else{
+                    await shell.run('''mkdir projects''');
+                    print("creating the new directory");
+                  }
                   onTap();
                 },
                 child: Transform.rotate(
@@ -176,11 +193,33 @@ class MySavesCard extends StatelessWidget {
               ),
             ),
             Container(
-                margin: EdgeInsets.only(top: 20,left: 23),
+                margin: EdgeInsets.only(top: 20, left: 23),
                 child: ProjectLogo(asset: asset)),
           ],
         ),
       ),
     );
+  }
+
+  _createProject() async {
+    SharedPreferences localStorage = await SharedPreferences.getInstance();
+    var account_Id = localStorage.getString("Id");
+    var data = {
+      'version': globals.version,
+      'account_Id': account_Id,
+      //'contrat_Id':,
+      //'projet_description':;
+      'project_name':globals.projectName,
+      'code_TpProject': dbType
+    };
+
+    var res = await CallApi().postData(data, '(Control)createProject.php');
+    print(res.body);
+    List<dynamic> body = json.decode(res.body);
+
+    if (body[0] == "success") {
+      //success
+    }
+
   }
 }

@@ -19,6 +19,7 @@ class PowerPointCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return MySavesCard(
       type: "PowerPoint",
+      dbType:"3",
       saveName: saveName,
       description: description,
       color1: HexColor("#ff8f6b"), //light

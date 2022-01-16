@@ -21,6 +21,7 @@ class WordCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return MySavesCard(
       type: "Word",
+      dbType:"1",
       saveName: saveName,
       description: description,
       color1: HexColor("#41a5ee"), //light
@@ -30,16 +31,16 @@ class WordCard extends StatelessWidget {
         print("word");
         if (Platform.isWindows) {
           // Word Documents
-          await shell.run('''type nul > ${globals.projectName}.docx''');
-          await shell.run('''start ${globals.projectName}.docx''');
-          await shell.run('''dir ${globals.projectName} /a''');
+          await shell.run('''type nul > ./projects/${globals.projectName}.docx''');
+          await shell.run('''start  ./projects/${globals.projectName}.docx''');
+          await shell.run('''dir  ./projects/${globals.projectName} /a''');
         }
         else if (Platform.isMacOS || Platform.isLinux) {
           // Word Documents
-          await shell.run('''touch ${globals.projectName}.docx''');
-          await shell.run('''open ${globals.projectName}.docx''');
+          await shell.run('''touch  ./projects/${globals.projectName}.docx''');
+          await shell.run('''open  ./projects/${globals.projectName}.docx''');
           await shell.run(
-              '''mdls ${globals.projectName}.docx -name kMDItemLastUsedDate''');
+              '''mdls  ./projects/${globals.projectName}.docx -name kMDItemLastUsedDate''');
         }
       },
     );

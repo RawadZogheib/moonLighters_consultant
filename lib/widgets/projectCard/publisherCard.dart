@@ -15,6 +15,7 @@ class PublisherCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return MySavesCard(
       type: "Publisher",
+      dbType:"6",
       saveName: saveName,
       description: description,
       color1: HexColor("#37c6d0"), //light

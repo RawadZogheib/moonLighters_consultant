@@ -15,6 +15,7 @@ class OneNoteCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return MySavesCard(
       type: "OneNote",
+      dbType:'5',
       saveName: saveName,
       description: description,
       color1: HexColor("#ca64ea"), //light

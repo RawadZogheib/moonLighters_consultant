@@ -18,6 +18,7 @@ class ExcelCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return MySavesCard(
       type: "Excel",
+      dbType:"2",
       saveName: saveName,
       description: description,
       color1: HexColor("#33c481"), //light

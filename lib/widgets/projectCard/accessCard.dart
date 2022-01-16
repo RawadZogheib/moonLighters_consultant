@@ -14,6 +14,7 @@ class AccessCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return MySavesCard(
       type: "Access",
+      dbType:"4",
       saveName: saveName,
       description: description,
       color1: HexColor("#e08095"), //light
