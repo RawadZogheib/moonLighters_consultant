@@ -10,6 +10,7 @@ import 'package:process_run/shell.dart';
 
 import 'package:shared_preferences/shared_preferences.dart';
 var shell = Shell();
+
 class MySavesCard extends StatelessWidget {
   final String type;
   final String dbType; // project_type needed for DB
@@ -109,16 +110,19 @@ class MySavesCard extends StatelessWidget {
               child: InkWell(
                 onTap: () async {
                   //Navigator.pushNamed(context, '/MyTimer');
-                  print("fckjkkkkkkkkkkkkkkkkkkkkkkkk");
                   bool directoryExists = await Directory('projects').exists();
-                  if(directoryExists) {
-                    //_createProject();
-                    print("directory exist");
-                  }else{
+                  if(!directoryExists){
                     await shell.run('''mkdir projects''');
-                    print("creating the new directory");
+                    print("creating the project directory");
+                  }
+                   directoryExists = await Directory('projects/${globals.contrat_Id}').exists();
+                  if(!directoryExists) {
+                    await shell.run('''cd projects''');
+                    await shell.run('''mkdir ${globals.contrat_Id}''');
+                    print("creating the contrat directory");
                   }
                   onTap();
+                  //_createProject();
                 },
                 child: Transform.rotate(
                     angle: -180 * 3.14159265359 / 180,
@@ -207,8 +211,8 @@ class MySavesCard extends StatelessWidget {
     var data = {
       'version': globals.version,
       'account_Id': account_Id,
-      //'contrat_Id':,
-      //'projet_description':;
+      'contrat_Id':globals.contrat_Id,
+      'projet_description':"WHATEVER",
       'project_name':globals.projectName,
       'code_TpProject': dbType
     };
