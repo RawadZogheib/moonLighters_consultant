@@ -10,6 +10,7 @@ import 'package:process_run/shell.dart';
 
 import 'package:shared_preferences/shared_preferences.dart';
 var shell = Shell();
+var path;
 
 class MySavesCard extends StatelessWidget {
   final String type;
@@ -108,21 +109,18 @@ class MySavesCard extends StatelessWidget {
                 shape: BoxShape.circle,
               ),
               child: InkWell(
-                onTap: () async {
-                  //Navigator.pushNamed(context, '/MyTimer');
-                  bool directoryExists = await Directory('projects').exists();
-                  if(!directoryExists){
-                    await shell.run('''mkdir projects''');
-                    print("creating the project directory");
+                onTap: () async {;
+                  // //Navigator.pushNamed(context, '/MyTimer');
+                  var path= Directory("./projects");
+                  if ((!await path.exists())) {
+                    path.create();
                   }
-                   directoryExists = await Directory('projects/${globals.contrat_Id}').exists();
-                  if(!directoryExists) {
-                    await shell.run('''cd projects''');
-                    await shell.run('''mkdir ${globals.contrat_Id}''');
-                    print("creating the contrat directory");
+                  path= Directory("./projects/${globals.contrat_Id}");
+                  if ((!await path.exists())){
+                    path.create();
                   }
                   onTap();
-                  //_createProject();
+                _createProject();
                 },
                 child: Transform.rotate(
                     angle: -180 * 3.14159265359 / 180,
@@ -217,12 +215,14 @@ class MySavesCard extends StatelessWidget {
       'code_TpProject': dbType
     };
 
-    var res = await CallApi().postData(data, '(Control)createProject.php');
+    var res = await CallApi().postData(data, 'Project/Control/(Control)createProject.php');
     print(res.body);
     List<dynamic> body = json.decode(res.body);
 
     if (body[0] == "success") {
-      //success
+      print("success");
+
+
     }
 
   }
