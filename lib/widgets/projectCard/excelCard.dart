@@ -27,13 +27,13 @@ class ExcelCard extends StatelessWidget {
       onTap: () async {
         print("Excel");
         if (Platform.isWindows) {
-          await shell.run('''type nul > ./projects/${globals.contrat_Id}/${globals.projectName}.xlsx''');
-          await shell.run('''start ./projects/${globals.contrat_Id}/${globals.projectName}.xlsx''');
+          await shell.run('''type nul > ./projects/${globals.contrat_Id}/${globals.project_name}.xlsx''');
+          await shell.run('''start ./projects/${globals.contrat_Id}/${globals.project_name}.xlsx''');
         }
     else if (Platform.isMacOS || Platform.isLinux) {
           // Excel Documents
-          await shell.run('''touch ./projects/${globals.contrat_Id}/${globals.projectName}.xlsx''');
-          await shell.run('''open ./projects/${globals.contrat_Id}/${globals.projectName}.xlsx''');
+          await shell.run('''touch ./projects/${globals.contrat_Id}/${globals.project_name}.xlsx''');
+          await shell.run('''open ./projects/${globals.contrat_Id}/${globals.project_name}.xlsx''');
         }
       },
     );

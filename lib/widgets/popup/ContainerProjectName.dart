@@ -18,7 +18,7 @@ class _ContainerProjectNameState extends State<ContainerProjectName> {
     return AlertDialog(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12.5)),
       content: Container(
-        height: 15.6.h, //300
+        height: 21.6.h, //300
         width: 53.1.w, //400
         child: ListView(
             padding: EdgeInsets.all(8.0),

@@ -39,7 +39,24 @@ class _PopupProjectNameState extends State<PopupProjectName> {
                     spaceAllowed: false,
                     obscure:false,
                     onChange: (value) {
-                      globals.projectName = value;
+                      globals.project_name = value;
+                    },
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  myTextInput(
+                    textString: "Description of the project",
+                    labelText: 'Description of your New Project',
+                    colBlue: colProjectName,
+                    colBlue_1: colProjectName_1,
+                    colBlue_2: colProjectName_2,
+                    maxLines: 2,
+                    textInputAction: TextInputAction.next,
+                    spaceAllowed: false,
+                    obscure:false,
+                    onChange: (value) {
+                      globals.project_description = value;
                     },
                   ),
                   Padding(

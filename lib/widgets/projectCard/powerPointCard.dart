@@ -28,12 +28,12 @@ class PowerPointCard extends StatelessWidget {
       onTap: () async {
         print("PowerPoint");
         if (Platform.isWindows) {
-          await shell.run('''type nul > ./projects/${globals.contrat_Id}/${globals.projectName}.pptx''');
-          await shell.run('''start ./projects/${globals.contrat_Id}/${globals.projectName}.pptx''');
+          await shell.run('''type nul > ./projects/${globals.contrat_Id}/${globals.project_name}.pptx''');
+          await shell.run('''start ./projects/${globals.contrat_Id}/${globals.project_name}.pptx''');
         }
     else if (Platform.isMacOS || Platform.isLinux) {
-          await shell.run('''touch ./projects/${globals.contrat_Id}/${globals.projectName}.pptx''');
-          await shell.run('''open ./projects/${globals.contrat_Id}/${globals.projectName}.pptx''');
+          await shell.run('''touch ./projects/${globals.contrat_Id}/${globals.project_name}.pptx''');
+          await shell.run('''open ./projects/${globals.contrat_Id}/${globals.project_name}.pptx''');
         }
       },
     );

@@ -31,16 +31,16 @@ class WordCard extends StatelessWidget {
         print("word");
         if (Platform.isWindows) {
           // Word Documents
-          await shell.run('''type nul > ./projects/${globals.contrat_Id}/${globals.projectName}.docx''');
-          await shell.run('''start ./projects/${globals.contrat_Id}/${globals.projectName}.docx''');
+          await shell.run('''type nul > ./projects/${globals.contrat_Id}/${globals.project_name}.docx''');
+          await shell.run('''start ./projects/${globals.contrat_Id}/${globals.project_name}.docx''');
           //await shell.run('''dir ./projects/${globals.contrat_Id}/${globals.projectName} /a''');
         }
         else if (Platform.isMacOS || Platform.isLinux) {
           // Word Documents
-          await shell.run('''touch ./projects/${globals.contrat_Id}/${globals.projectName}.docx''');
-          await shell.run('''open ./projects/${globals.contrat_Id}/${globals.projectName}.docx''');
+          await shell.run('''touch ./projects/${globals.contrat_Id}/${globals.project_name}.docx''');
+          await shell.run('''open ./projects/${globals.contrat_Id}/${globals.project_name}.docx''');
           await shell.run(
-              '''mdls ./projects/${globals.contrat_Id}/${globals.projectName}.docx -name kMDItemLastUsedDate''');
+              '''mdls ./projects/${globals.contrat_Id}/${globals.project_name}.docx -name kMDItemLastUsedDate''');
         }
       },
     );

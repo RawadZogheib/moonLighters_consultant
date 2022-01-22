@@ -45,6 +45,7 @@ const String error9 = "It's not a phoneNumber format, example: +961########";
 const String error10 = "No data available";
 const String error11 = "This email is not Registered";
 const String error12 = "Incorrect Email sent";
+const String error13 = "Project Name already exist";
 const String errorToken = "Token Error.";
 const String errorVersion = "New version available.";
 const String errorElse = "Failed to connect... Connection Problem.";
@@ -88,7 +89,8 @@ String? contrat_description = null;
 String? contrat_code = null;
 
 //Name of New Project (page[/popup/PopupProjectName.dart])
-String? projectName = null;
+String? project_name = null;
+String? project_description = null;
 
 /*
   print(globals.contrat_Id.toString() + " " +

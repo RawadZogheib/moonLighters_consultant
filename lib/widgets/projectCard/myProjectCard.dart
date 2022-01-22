@@ -4,15 +4,15 @@ import 'dart:io';
 import 'package:flip_card/flip_card.dart';
 import 'package:flutter/material.dart';
 import 'package:mn_consultant/api/my_api.dart';
-import 'package:mn_consultant/widgets/other/projectLogo.dart';
 import 'package:mn_consultant/globals/globals.dart' as globals;
+import 'package:mn_consultant/widgets/other/projectLogo.dart';
 import 'package:process_run/shell.dart';
-
 import 'package:shared_preferences/shared_preferences.dart';
+
 var shell = Shell();
 var path;
 
-class MySavesCard extends StatelessWidget {
+class MySavesCard extends StatefulWidget {
   final String type;
   final String dbType; // project_type needed for DB
   final String saveName;
@@ -22,21 +22,27 @@ class MySavesCard extends StatelessWidget {
   final String asset;
   final onTap;
 
-  MySavesCard({required this.type,
-    required this.dbType,
-    required this.saveName,
-    required this.description,
-    required this.color1,
-    required this.color2,
-    required this.asset,
-    required this.onTap});
+  MySavesCard(
+      {required this.type,
+      required this.dbType,
+      required this.saveName,
+      required this.description,
+      required this.color1,
+      required this.color2,
+      required this.asset,
+      required this.onTap});
 
+  @override
+  State<MySavesCard> createState() => _MySavesCardState();
+}
+
+class _MySavesCardState extends State<MySavesCard> {
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {},
-      hoverColor: color1.withOpacity(0.2),
-      splashColor: color1.withOpacity(0.2),
+      hoverColor: widget.color1.withOpacity(0.2),
+      splashColor: widget.color1.withOpacity(0.2),
       child: FlipCard(
         fill: Fill.fillBack,
         // Fill the back side of the card to make in the same size as the front.
@@ -52,7 +58,7 @@ class MySavesCard extends StatelessWidget {
               width: 120,
               decoration: BoxDecoration(
                   gradient: new LinearGradient(
-                      colors: [color1, color2],
+                      colors: [widget.color1, widget.color2],
                       begin: FractionalOffset.topLeft,
                       end: FractionalOffset.bottomRight,
                       stops: [0.0, 1.0],
@@ -67,15 +73,13 @@ class MySavesCard extends StatelessWidget {
               padding: const EdgeInsets.only(left: 8.0),
               child: Column(
                 children: [
-
                   Container(
                       margin: EdgeInsets.only(top: 10, right: 31),
-                      child: ProjectLogo(asset: asset)),
-
+                      child: ProjectLogo(asset: widget.asset)),
                   Container(
                     margin: EdgeInsets.only(top: 8.0, right: 31),
                     child: Text(
-                      type,
+                      widget.type,
                       textDirection: TextDirection.ltr,
                       style: TextStyle(
                           fontSize: 14,
@@ -86,7 +90,7 @@ class MySavesCard extends StatelessWidget {
                   Container(
                     margin: EdgeInsets.only(right: 31.0),
                     child: Text(
-                      saveName,
+                      widget.saveName,
                       maxLines: 2,
                       textDirection: TextDirection.ltr,
                       style: TextStyle(
@@ -109,18 +113,19 @@ class MySavesCard extends StatelessWidget {
                 shape: BoxShape.circle,
               ),
               child: InkWell(
-                onTap: () async {;
+                onTap: () async {
+                  ;
                   // //Navigator.pushNamed(context, '/MyTimer');
-                  var path= Directory("./projects");
+                  var path = Directory("./projects");
                   if ((!await path.exists())) {
                     path.create();
                   }
-                  path= Directory("./projects/${globals.contrat_Id}");
-                  if ((!await path.exists())){
+                  path = Directory("./projects/${globals.contrat_Id}");
+                  if ((!await path.exists())) {
                     path.create();
                   }
-                  onTap();
-                _createProject();
+                  widget.onTap();
+                  _createProject();
                 },
                 child: Transform.rotate(
                     angle: -180 * 3.14159265359 / 180,
@@ -141,7 +146,7 @@ class MySavesCard extends StatelessWidget {
             Container(
               decoration: BoxDecoration(
                   gradient: new LinearGradient(
-                      colors: [color1, color2],
+                      colors: [widget.color1, widget.color2],
                       begin: FractionalOffset.topLeft,
                       end: FractionalOffset.bottomRight,
                       stops: [0.0, 1.0],
@@ -179,7 +184,7 @@ class MySavesCard extends StatelessWidget {
                             ),
                           ),
                           Text(
-                            description,
+                            widget.description,
                             textDirection: TextDirection.ltr,
                             style: TextStyle(
                               fontSize: 12,
@@ -196,7 +201,7 @@ class MySavesCard extends StatelessWidget {
             ),
             Container(
                 margin: EdgeInsets.only(top: 20, left: 23),
-                child: ProjectLogo(asset: asset)),
+                child: ProjectLogo(asset: widget.asset)),
           ],
         ),
       ),
@@ -209,21 +214,33 @@ class MySavesCard extends StatelessWidget {
     var data = {
       'version': globals.version,
       'account_Id': account_Id,
-      'contrat_Id':globals.contrat_Id,
-      'projet_description':"WHATEVER",
-      'project_name':globals.projectName,
-      'code_TpProject': dbType
+      'contrat_Id': globals.contrat_Id,
+      'project_description': globals.project_description,
+      'project_name': globals.project_name,
+      'code_TpProject': widget.dbType
     };
-
-    var res = await CallApi().postData(data, 'Project/Control/(Control)createProject.php');
+    print("fffffffffffffff" + data.toString());
+    var res = await CallApi()
+        .postData(data, 'Project/Control/(Control)createProject.php');
     print(res.body);
     List<dynamic> body = json.decode(res.body);
 
     if (body[0] == "success") {
       print("success");
-
-
+    } else if (body[0] == "error13") {
+      showDialog<String>(
+        context: context,
+        builder: (BuildContext context) => AlertDialog(
+          title: const Text('Error'),
+          content: const Text(globals.error13),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () => Navigator.pop(context, 'OK'),
+              child: const Text('OK'),
+            ),
+          ],
+        ),
+      );
     }
-
   }
 }
