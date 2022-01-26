@@ -27,7 +27,7 @@ class _myDateOfBirthState extends State<myDateOfBirth> {
     DateTime? _datePicker = await showDatePicker(
       context: context,
       firstDate: DateTime(1947),
-      lastDate: DateTime(2022),
+      lastDate: DateTime(2040),
       initialDate: _date,
       initialDatePickerMode: DatePickerMode.year,
     );

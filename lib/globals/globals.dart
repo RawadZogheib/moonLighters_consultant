@@ -54,7 +54,7 @@ const String codeFailed = "your code is incorrect";
 const String codeException = "Oops Something went wrong! please try to login again!";
 
 //for 6 digit code
-int? sixCodeNb = null;
+String? sixCodeNb = null;
 
 //ForgetPassword
 String? emailForgetPass = null;
