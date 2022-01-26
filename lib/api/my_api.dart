@@ -47,4 +47,12 @@ class CallApi{
 
   }
 
+  uploadFileRequest(){
+    var uri = Uri.parse(
+        "${_url}/Demo/Control/(Control)uploadFile.php");
+    var request = new http.MultipartRequest("POST", uri);
+    return request;
+
+  }
+
 }

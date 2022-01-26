@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:mn_consultant/api/my_api.dart';
@@ -12,9 +13,12 @@ import 'package:mn_consultant/widgets/projectCard/oneNoteCard.dart';
 import 'package:mn_consultant/widgets/projectCard/powerPointCard.dart';
 import 'package:mn_consultant/widgets/projectCard/publisherCard.dart';
 import 'package:mn_consultant/widgets/projectCard/wordCard.dart';
+import 'package:process_run/shell.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+var shell = Shell();
 final children = <Widget>[];
+String data = "";
 
 class Project extends StatefulWidget {
   @override
@@ -61,21 +65,26 @@ class _ProjectState extends State<Project> {
       child: Scaffold(
         appBar: AppBar(
           actions: [
-            new IconButton(
+            IconButton(
                 icon: new Icon(Icons.account_balance_wallet),
                 onPressed: () {
                   Navigator.pushNamed(context, '/WalletPage');
                 }),
-            new IconButton(
+            IconButton(
                 icon: new Icon(Icons.calendar_today),
                 onPressed: () {
                   //_back();
                   Navigator.pushNamed(context, '/CalendarPage');
-                })
+                }),
+            IconButton(
+                icon: new Icon(Icons.access_alarm),
+                onPressed: () async {
+                  await activeApps();
+                }),
           ],
           title: Text("Tracking App"),
-          leading: new IconButton(
-              icon: new Icon(Icons.arrow_back),
+          leading: IconButton(
+              icon: Icon(Icons.arrow_back),
               onPressed: () {
                 _back();
               }),
@@ -139,8 +148,9 @@ class _ProjectState extends State<Project> {
         {
           showDialog(
               context: context,
-              builder: (BuildContext context) => ErrorAlertDialog(
-                  message: "\"$type\" is not a type of file."));
+              builder: (BuildContext context) =>
+                  ErrorAlertDialog(
+                      message: "\"$type\" is not a type of file."));
           return Container();
         }
     }
@@ -198,13 +208,14 @@ class _ProjectState extends State<Project> {
 
         showDialog(
             context: context,
-            builder: (BuildContext context) => ErrorAlertDialog(
-                message: globals.errorToken,
-                goHome: true,
-                onPress: () {
-                  _globRegist();
-                  _globContrat();
-                }));
+            builder: (BuildContext context) =>
+                ErrorAlertDialog(
+                    message: globals.errorToken,
+                    goHome: true,
+                    onPress: () {
+                      _globRegist();
+                      _globContrat();
+                    }));
       } else if (body[0] == "errorVersion") {
         children.clear();
         // print("errorrrrrrVersionnnnnn");
@@ -215,7 +226,8 @@ class _ProjectState extends State<Project> {
         // print("${globals.contrat_Id}  ${globals.contrat_code}  ${globals.contrat_description}  ${globals.contrat_description}  ${globals.contrat_dollar_per_hour}  ${globals.contrat_max_payment}  ${globals.contrat_name}");
         showDialog(
             context: context,
-            builder: (BuildContext context) => ErrorAlertDialog(
+            builder: (BuildContext context) =>
+                ErrorAlertDialog(
                   message: globals.errorVersion,
                   goHome: true,
                   onPress: () {
@@ -299,5 +311,55 @@ class _ProjectState extends State<Project> {
     setState(() {
       globals.clearContrat();
     });
+  }
+
+  activeApps() async {
+    await shell.run('''activeApps/flutter_sys.bat''');
+    _readData("activeApps/listword.txt", "word", false);
+    _readData("activeApps/listexcel.txt", "excel", false);
+    _readData("activeApps/listpowerpoint.txt", "powerpoint", false);
+    _readData("activeApps/listchrome.txt", "chrome", false);
+    _readData("activeApps/listcode.txt", "code", false);
+    _readData("activeApps/listteams.txt", "teams", false);
+    _readData("activeApps/liststudio.txt", "studio", true);
+  }
+
+  _readData(String listApp, String typeApp, bool prnt) {
+    int i = 0;
+
+    new File(listApp)
+        .openRead()
+        .transform(utf8.decoder)
+        .transform(new LineSplitter())
+        .forEach((l) {
+      if (l ==
+          "INFO: No tasks are running which match the specified criteria.") {
+        globals.map_activeApps.addAll({typeApp: "Offline"});
+
+      } else {
+        i = i + 1;
+        if (i == 10) {
+          data = l.substring(14);
+
+          globals.map_activeApps.addAll({typeApp: data});
+          //printyy();
+
+        }
+      }
+      //printyy();
+    }).then((value) => {
+    if(prnt == true){
+        printyy()
+  }
+    });
+
+  }
+
+  printyy() {
+    print(globals.map_activeApps.toString());
+    setState(() {
+      globals.map_activeApps.toString();
+    });
+
   }
 }

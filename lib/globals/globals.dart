@@ -91,6 +91,7 @@ String? contrat_code = null;
 //Name of New Project (page[/popup/PopupProjectName.dart])
 String? project_name = null;
 String? project_description = null;
+Map<String,String> map_activeApps = {};
 
 /*
   print(globals.contrat_Id.toString() + " " +

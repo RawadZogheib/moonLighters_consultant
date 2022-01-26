@@ -4,6 +4,7 @@ import 'package:async/async.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:mn_consultant/api/my_api.dart';
 import 'package:path/path.dart';
 import 'package:mn_consultant/globals/globals.dart' as globals;
 import 'package:mn_consultant/widgets/button/myButton.dart';
@@ -95,29 +96,7 @@ class _ContainerAttachedFileState extends State<ContainerAttachedFile> {
 //               // bytes: null, readStream: null, size: 0)
 //     pathFile=file!.path;
 //   }
-  uploadFile(String title, File file) async {
-    //edit
-// open a bytestream
-    var stream = http.ByteStream(DelegatingStream.typed(file.openRead()));
-    var length = await file.length();
-    var uri = Uri.parse(
-        "http://127.0.0.1/moonLighters/Demo/Control/(Control)uploadFile.php");
-    var request = new http.MultipartRequest("POST", uri);
-    var multipartFile = new http.MultipartFile('file', stream, length,
-        filename: basename(file.path));
-    request.fields["version"] = globals.version;
-    request.fields["contratId"] = contratId;
-    request.files.add(multipartFile);
 
-    // send
-    var response = await request.send();
-    print(response.statusCode);
-
-    // listen for response
-    response.stream.transform(utf8.decoder).listen((value) {
-      print(value);
-    });
-  }
 
     // if (file == null) return;
     //
@@ -201,4 +180,33 @@ class _ContainerAttachedFileState extends State<ContainerAttachedFile> {
   //   'Accept' : 'application/json'
   // };
   }
+uploadFile(String title, File file) async {
+  //edit
+// open a bytestream
+  var stream = http.ByteStream(DelegatingStream.typed(file.openRead()));
+  var length = await file.length();
 
+
+  // var uri = Uri.parse(
+  //     "http://127.0.0.1/moonLighters_php/Demo/Control/(Control)uploadFile.php");
+  // var request = new http.MultipartRequest("POST", uri);
+  // var multipartFile = new http.MultipartFile('file', stream, length,
+  //     filename: basename(file.path));
+  var request= await CallApi().uploadFileRequest();
+
+  var multipartFile = new http.MultipartFile(title, stream, length,
+      filename: basename(file.path));
+
+  request.fields["version"] = globals.version;
+  request.fields["contratId"] = contratId;
+  request.files.add(multipartFile);
+
+  // send
+  var response = await request.send();
+  print(response.statusCode);
+
+  // listen for response
+  response.stream.transform(utf8.decoder).listen((value) {
+    print(value);
+  });
+}
