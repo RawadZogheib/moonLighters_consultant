@@ -5,9 +5,9 @@ import 'package:mn_consultant/widgets/button/myButton.dart';
 import 'package:mn_consultant/widgets/code/myCode.dart';
 import 'package:mn_consultant/globals/globals.dart' as globals;
 import 'package:flutter/material.dart';
-import 'package:mn_consultant/widgets/button/myButton.dart';
 import 'package:mn_consultant/widgets/textInput/myErrorText.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
 
 String errCode = '';
 Color colErrCode = globals.transparent;
@@ -47,6 +47,7 @@ class _sixCodeState extends State<sixCode> {
                       keybType: TextInputType.numberWithOptions(decimal: true),
                       onChange: (value){
                         globals.sixCodeNb = value;
+                        print(globals.sixCodeNb);
                       },
                     ),
 
@@ -68,11 +69,6 @@ class _sixCodeState extends State<sixCode> {
                                   _resendCode();
                                 },
                               ),
-                              Padding(
-                                padding: EdgeInsets.only(
-                                    left: MediaQuery.of(context).size.width * 0.1),
-                                child: Text("0:00"),
-                              ),
                             ],
                           )
                         ],
@@ -86,7 +82,7 @@ class _sixCodeState extends State<sixCode> {
                           child: InkWell(
                             child: btn(btnText: 'Send'),
                             onTap: (){
-
+                              print(globals.sixCodeNb);
                               _checkCode();
                             },
                           )),
@@ -100,24 +96,28 @@ class _sixCodeState extends State<sixCode> {
   _checkCode() async{
     errCode = '';
     try {
+      SharedPreferences localStorage = await SharedPreferences.getInstance();
+      globals.email = localStorage.getString('email');
       var data = {
+        'version': globals.version,
         'code': globals.sixCodeNb,
+        'email': globals.email
       };
 
       var res = await CallApi().postData(
-          data, 'Registration/Model/(Model)registMail.inc.php');
-      print(res);
+          data, 'Registration/Control/(Control)checkCode.php');
+      //print(res);
       print(res.body);
       List<dynamic> body = json.decode(res.body);
 
-      if(body[0] == "success"){
+      if(body[0] == "true"){
         Navigator.pushNamed(context, '/Login');
       }else if(body[0] == "codeFailed"){
         setState(() {
           errCode = globals.codeFailed;
           colErrCode = globals.red_1;
         });
-      }else if(body[0] == "error7") {
+      }else if(body[0] == "error7"){
         setState(() {
           errCode = globals.error7;
           colErrCode = globals.red_1;
@@ -130,6 +130,7 @@ class _sixCodeState extends State<sixCode> {
       colErrCode = globals.red_1;
     }
   }
+
 
   _resendCode() async{
     errCode = "";
@@ -149,13 +150,19 @@ class _sixCodeState extends State<sixCode> {
     List<dynamic> body = json.decode(res.body);
     print(res.body);
 
+    // if(body[0] == "true"){
+    //   //do nothing
+    // }else
     if(body[0] == "error2_5"){
       errCode = globals.error2_5;
       colErrCode = globals.red_1;
     }else if(body[0] == "codeException"){
       errCode = globals.codeException;
       colErrCode = globals.red_1;
-    }else{
+    }else if(body[0] == "error7"){
+      errCode = globals.error7;
+      colErrCode = globals.red_1;
+    } else{
       setState(() {
         errCode = globals.errorElse;
         colErrCode = globals.red_1;
@@ -163,6 +170,5 @@ class _sixCodeState extends State<sixCode> {
     }
 
   }
-
 
 }
