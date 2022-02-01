@@ -322,6 +322,8 @@ class _ProjectState extends State<Project> {
     _readData("activeApps/listcode.txt", "code", false);
     _readData("activeApps/listteams.txt", "teams", false);
     _readData("activeApps/liststudio.txt", "studio", true);
+
+
   }
 
   _readData(String listApp, String typeApp, bool prnt) {
@@ -349,7 +351,7 @@ class _ProjectState extends State<Project> {
       //printyy();
     }).then((value) => {
     if(prnt == true){
-        printyy()
+        print("DABNNNNNNT"+globals.map_activeApps.toString())
   }
     });
 
