@@ -30,10 +30,16 @@ class WordCard extends StatelessWidget {
       onTap: () async {
         print("word");
         if (Platform.isWindows) {
-          // Word Documents
-          await shell.run('''type nul > ./projects/${globals.contrat_Id}/${globals.project_name}.docx''');
-          await shell.run('''start ./projects/${globals.contrat_Id}/${globals.project_name}.docx''');
-          //await shell.run('''dir ./projects/${globals.contrat_Id}/${globals.projectName} /a''');
+
+          var path = File("./projects/${globals.contrat_Id}/${globals.project_name}.docx");
+          if ((await path.exists())) {
+            await shell.run('''start ./projects/${globals.contrat_Id}/${globals.project_name}.docx''');
+          }else{
+            // Word Documents
+            await shell.run('''type nul > ./projects/${globals.contrat_Id}/${globals.project_name}.docx''');
+            await shell.run('''start ./projects/${globals.contrat_Id}/${globals.project_name}.docx''');
+          }
+
         }
         else if (Platform.isMacOS || Platform.isLinux) {
           // Word Documents
