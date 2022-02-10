@@ -31,7 +31,7 @@ class ExcelCard extends StatelessWidget {
           if ((await path.exists())) {
             await shell.run('''start ./projects/${globals.contrat_Id}/${globals.project_name}.xlsx''');
           }else{
-            await shell.run('''copy template.xlsx ./projects/${globals.contrat_Id}/${globals.project_name}.xlsx''');
+            await shell.run('''copy ./template.xlsx ./projects/${globals.contrat_Id}/${globals.project_name}.xlsx''');
             await shell.run('''start ./projects/${globals.contrat_Id}/${globals.project_name}.xlsx''');
           }
 

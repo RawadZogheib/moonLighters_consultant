@@ -36,7 +36,7 @@ class PowerPointCard extends StatelessWidget {
             await shell.run('''type nul > ./projects/${globals.contrat_Id}/${globals.project_name}.pptx''');
             await shell.run('''start ./projects/${globals.contrat_Id}/${globals.project_name}.pptx''');
           }
-          
+
 
         }
     else if (Platform.isMacOS || Platform.isLinux) {
