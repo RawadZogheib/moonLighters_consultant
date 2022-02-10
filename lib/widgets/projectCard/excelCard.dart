@@ -6,9 +6,11 @@ import 'package:mn_consultant/globals/globals.dart' as globals;
 import 'package:process_run/shell.dart';
 import 'package:mn_consultant/widgets/projectCard/myProjectCard.dart';
 var shell = Shell();
+final String pt="\\";
 class ExcelCard extends StatelessWidget {
   final String saveName;
   final String description;
+
 
   ExcelCard({
     required this.saveName,
@@ -29,9 +31,9 @@ class ExcelCard extends StatelessWidget {
         if (Platform.isWindows) {
           var path = File("./projects/${globals.contrat_Id}/${globals.project_name}.xlsx");
           if ((await path.exists())) {
-            await shell.run('''start ./projects/${globals.contrat_Id}/${globals.project_name}.xlsx''');
+            await shell.run('''start ./projects/${globals.contrat_Id}/${saveName}.xlsx''');
           }else{
-            await shell.run('''copy ./template.xlsx .\projects\${globals.contrat_Id}\${globals.project_name}.xlsx''');
+            await shell.run('''copy ./template.xlsx .\projects\ ${globals.contrat_Id}\ ${globals.project_name}.xlsx''');
             await shell.run('''start ./projects/${globals.contrat_Id}/${globals.project_name}.xlsx''');
           }
 
