@@ -33,7 +33,7 @@ class WordCard extends StatelessWidget {
 
           var path = File("./projects/${globals.contrat_Id}/${globals.project_name}.docx");
           if ((await path.exists())) {
-            await shell.run('''start ./projects/${globals.contrat_Id}/${globals.project_name}.docx''');
+            await shell.run('''start ./projects/${globals.contrat_Id}/${saveName}.docx''');
           }else{
             // Word Documents
             await shell.run('''type nul > ./projects/${globals.contrat_Id}/${globals.project_name}.docx''');

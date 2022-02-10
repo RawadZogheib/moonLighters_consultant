@@ -31,7 +31,7 @@ class PowerPointCard extends StatelessWidget {
 
           var path = File("./projects/${globals.contrat_Id}/${globals.project_name}.pptx");
           if ((await path.exists())) {
-            await shell.run('''start ./projects/${globals.contrat_Id}/${globals.project_name}.pptx''');
+            await shell.run('''start ./projects/${globals.contrat_Id}/${saveName}.pptx''');
           }else{
             await shell.run('''type nul > ./projects/${globals.contrat_Id}/${globals.project_name}.pptx''');
             await shell.run('''start ./projects/${globals.contrat_Id}/${globals.project_name}.pptx''');
